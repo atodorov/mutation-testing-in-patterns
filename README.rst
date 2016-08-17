@@ -1,6 +1,10 @@
 Mutation Testing in Patterns
 ****************************
 
+.. image:: https://readthedocs.org/projects/mutation-testing-patterns/badge/?version=latest
+    :target: http://mutation-testing-patterns.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 Mutation testing is a technique used to evaluate the quality of existing software
 tests. Mutation testing involves modifying a program in small ways, for example
 replacing ``True`` constants with ``False`` and re-running its test suite.
