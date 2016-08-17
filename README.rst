@@ -18,6 +18,38 @@ information about installing and running the necessary tools and examples.
 .. toctree::
    :maxdepth: 2
 
+Make sure your tools work
+=========================
+
+Mutation testing relies on dynamically modifying program modules and
+loading the mutated instance from memory. Depending on the language specifics
+there may be several ways to refer to the same module. In Python
+the following are equivalent
+
+.. code-block:: python
+
+    import sandwich.ham.ham
+    obj = sandwich.ham.ham.SomeClass()
+
+    from sandwich.ham import ham
+    obj = ham.SomeClass()
+
+.. note::
+
+    The equivalency here is in terms of having access to the same module API.
+
+When we mutation test the right-most ``ham`` module our tools may not
+be able to resolve to the same module if various importing styles are used.
+For example see :doc:`python/example_00/README`.
+
+Another possible issue is with programs that load modules dynamically or
+change the module search path at runtime. Depending on how the
+mutation testing tool works these operations may interfere with it.
+For example see :doc:`python/example_01/README`.
+
+TL,DR: explore your test tool first and manually verify the results before
+going further. Unless you know the tools don't trust them.
+
 Make sure your tests work
 =========================
 
@@ -27,16 +59,15 @@ The mutation test tool has no way of knowing whether your test suite failed
 because the mutant tripped one of the test cases or whether it failed due
 to other reasons.
 
-One possible source of failures comes from software which dynamically loads
-modules or changes the module load path at runtime. Depending on how the
-mutation testing tool works these operations may interfere with it.
 
+TODO: add example
 
-TODO: For example Python
 
 When starting with mutation testing get to know how your tools work
 internally and experiment one module at a time to make sure everything
 is working as expected!
+
+
 
 Divide and conquer
 ==================
