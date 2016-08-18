@@ -11,12 +11,7 @@ Reproducer
     $ celery -A cosmic_ray.tasks.worker worker
 
     $ cosmic-ray run --test-runner nose --baseline=10 example.json hello.py -- test_hello.py 
-    (mutation_testing)[atodorov@aero example_03]$ cosmic-ray report example.json
-    job ID 1:Outcome.KILLED:hello
-    command: cosmic-ray worker hello replace_NotEq_with_In 0 nose -- test_hello.py
-    
-    job ID 2:Outcome.KILLED:hello
-    command: cosmic-ray worker hello replace_NotEq_with_Eq 0 nose -- test_hello.py
+    $ cosmic-ray report example.json
     
     job ID 3:Outcome.SURVIVED:hello
     command: cosmic-ray worker hello replace_NotEq_with_NotIn 0 nose -- test_hello.py
@@ -32,18 +27,6 @@ Reproducer
              return ((greeting + ', ') + name)
          else:
              return ('Hello, ' + name)
-    
-    job ID 4:Outcome.KILLED:hello
-    command: cosmic-ray worker hello replace_NotEq_with_LtE 0 nose -- test_hello.py
-    
-    job ID 5:Outcome.KILLED:hello
-    command: cosmic-ray worker hello replace_NotEq_with_Lt 0 nose -- test_hello.py
-    
-    job ID 6:Outcome.KILLED:hello
-    command: cosmic-ray worker hello replace_NotEq_with_GtE 0 nose -- test_hello.py
-    
-    job ID 7:Outcome.KILLED:hello
-    command: cosmic-ray worker hello replace_NotEq_with_Is 0 nose -- test_hello.py
     
     job ID 8:Outcome.SURVIVED:hello
     command: cosmic-ray worker hello replace_NotEq_with_Gt 0 nose -- test_hello.py

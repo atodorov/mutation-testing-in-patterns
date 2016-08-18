@@ -154,6 +154,24 @@ For example see :doc:`python/example_03/README`
 TL,DR: Refactor ``if str != "":`` to ``if str:``!
 
 
+Python: Testing for X != 1
+==========================
+
+When testing the not equals condition we need at least 3 test cases:
+
+* Test with value smaller than the condition
+* Test with value that equals the condition
+* Test with value greater than the condition
+
+Most often we do test with value that equals the condition (the golden scenario)
+and either one of the other bordering values but not both. This
+leads to mutations which are not killed.
+
+Example :doc:`python/example_04/README`
+
+TL,DR: when testing ``X != INT`` test with values ``INT-1``, ``INT`` and
+``INT+1`` to cover all possible scenarios.
+
 
 Appendix. Mutation testing with Python
 ======================================
