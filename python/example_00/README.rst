@@ -11,11 +11,11 @@ Reproducer
 
 ::
 
-    pip install https://github.com/sixty-north/cosmic-ray/zipball/2a48656
-    celery -A cosmic_ray.tasks.worker worker
+    $ pip install https://github.com/sixty-north/cosmic-ray/zipball/2a48656
+    $ celery -A cosmic_ray.tasks.worker worker
 
-    cosmic-ray run --baseline=10 example.json sandwich/ham/ham.py -- tests
-    cosmic-ray report example.json
+    $ cosmic-ray run --baseline=10 example.json sandwich/ham/ham.py -- tests
+    $ cosmic-ray report example.json
     job ID 1:Outcome.SURVIVED:sandwich.ham.ham
     command: cosmic-ray worker sandwich.ham.ham number_replacer 0 unittest -- tests
     --- mutation diff ---

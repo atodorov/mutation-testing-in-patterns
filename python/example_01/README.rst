@@ -3,7 +3,7 @@ Mutant not killed when dynamically importing module
 
 Example of how dynamically importing modules allows mutations to
 survive. In this case the problem is a bug in Cosmic-Ray which still
-hasn't been diagnosed properly.
+hasn't been diagnosed properly. For more information see
 `Issue #157 <https://github.com/sixty-north/cosmic-ray/issues/157>`_.
 
 Reproducer
@@ -11,11 +11,11 @@ Reproducer
 
 ::
 
-    pip install https://github.com/sixty-north/cosmic-ray/zipball/b3c57a3
-    celery -A cosmic_ray.tasks.worker worker
+    $ pip install https://github.com/sixty-north/cosmic-ray/zipball/b3c57a3
+    $ celery -A cosmic_ray.tasks.worker worker
 
-    cosmic-ray run --baseline=10 example.json sandwich/ham/ham.py -- tests
-    cosmic-ray report example.json
+    $ cosmic-ray run --baseline=10 example.json sandwich/ham/ham.py -- tests
+    $ cosmic-ray report example.json
     job ID 1:Outcome.SURVIVED:sandwich.ham.ham
     command: cosmic-ray worker sandwich.ham.ham number_replacer 0 unittest -- tests
     --- mutation diff ---
@@ -41,7 +41,7 @@ In this example ``test_control.py`` properly detects the mutant when the
 source code is modified by hand and the test executed manually. To verify this
 edit ``sandwich/ham/ham.py`` as shown above and then execute ::
 
-    python -m unittest tests/test_control.py 
+    $ python -m unittest tests/test_control.py 
     F
     ======================================================================
     FAIL: test_loading_via_importlib (tests.test_control.TestControl)
