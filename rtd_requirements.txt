@@ -1,2 +1,2 @@
 Sphinx==1.4.5
-alabaster
+sphinx-rtd-theme
