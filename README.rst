@@ -48,24 +48,21 @@ mutation testing tool works these operations may interfere with it.
 For example see :doc:`python/example_01/README`.
 
 TL,DR: explore your test tool first and manually verify the results before
-going further. Unless you know the tools don't trust them.
+going further. Unless you know the tools don't trust them!
 
 Make sure your tests work
 =========================
 
 Mutation testing relies on the fact that your test suite will fail when a
-mutation is introduced. In turn any kind of failure is said to kill the mutant.
+mutation is introduced. In turn any kind of failure will kill the mutant!
 The mutation test tool has no way of knowing whether your test suite failed
-because the mutant tripped one of the test cases or whether it failed due
+because the mutant tripped one of the assertions or whether it failed due
 to other reasons.
 
+For example see :doc:`python/example_02/README`
 
-TODO: add example
-
-
-When starting with mutation testing get to know how your tools work
-internally and experiment one module at a time to make sure everything
-is working as expected!
+TL,DR: make sure your test suite is robust and doesn't randomly fail due to
+external factors!
 
 
 
