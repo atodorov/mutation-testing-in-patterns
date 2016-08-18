@@ -111,7 +111,7 @@ and executes only the test which is related to this file.
 For *pykickstart* this approach reduced  the entire execution time to little
 over 6 hours!
 
-Good source code and test organization will allow easy division of test
+TL,DR: Good source code and test organization will allow easy division of test
 runs and tremendously speed up your mutation testing execution time!
 
 Fail fast
@@ -123,8 +123,36 @@ most of the tools have no way of telling whether or not the failed test is
 related to the mutated code. That means it also doesn't matter if there are
 more than one failing tests so you can use this to your advantage.
 
-Whenever your test tools and framework support the **fail fast** option
+TL,DR: Whenever your test tools and framework support the **fail fast** option
 make use of it to reduce test execution time even more!
+
+Python: Refactor if string != ""
+================================
+
+Comparison operators may be mutated with each other which gives,
+depending on the langauge about 10 possible mutations.
+
+Every time ``str`` is not an empty string the following 3 variants
+are evaluated to ``True``:
+
+* ``if str != ""``
+* ``if str > ""``
+* ``if str not in ""``
+
+The existing test cases pass and these mutations are never killed.
+Refactoring this to ::
+
+    if str:
+        do_something()
+
+
+is the best way to go about it. This also reduces the total number of
+possible mutations.
+
+For example see :doc:`python/example_03/README`
+
+TL,DR: Refactor ``if str != "":`` to ``if str:``!
+
 
 
 Appendix. Mutation testing with Python
