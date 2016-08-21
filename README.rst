@@ -132,17 +132,17 @@ Python: Refactor if string != ""
 Comparison operators may be mutated with each other which gives,
 depending on the langauge about 10 possible mutations.
 
-Every time ``str`` is not an empty string the following 3 variants
+Every time ``string`` is not an empty string the following 3 variants
 are evaluated to ``True``:
 
-* ``if str != ""``
-* ``if str > ""``
-* ``if str not in ""``
+* ``if string != ""``
+* ``if string > ""``
+* ``if string not in ""``
 
 The existing test cases pass and these mutations are never killed.
 Refactoring this to ::
 
-    if str:
+    if string:
         do_something()
 
 
@@ -151,7 +151,7 @@ possible mutations.
 
 For example see :doc:`python/example_03/README`
 
-TL,DR: Refactor ``if str != "":`` to ``if str:``!
+TL,DR: Refactor ``if string != "":`` to ``if string:``!
 
 
 Python: Testing for X != 1
@@ -171,6 +171,36 @@ Example :doc:`python/example_04/README`
 
 TL,DR: when testing ``X != INT`` test with values ``INT-1``, ``INT`` and
 ``INT+1`` to cover all possible scenarios.
+
+
+Python: Refactor if len(list) != 0
+==================================
+
+Every time ``list`` is not an empty list the following variants
+are evaluated to ``True`` and result in surviving mutants:
+
+* ``if len(lst) != 0``
+* ``if len(lst) > 0``
+
+Additionally if we don't have a test to validate the ``if`` body,
+for example that it raises an exception, then the following mutation
+will also survive:
+
+* ``if len(lst) < 0``
+
+Refactoring this to ::
+
+    if list:
+        do_something()
+
+
+is the best way to go about it. This also reduces the total number of
+possible mutations.
+
+For example see :doc:`python/example_05/README`
+
+TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
+
 
 
 Appendix. Mutation testing with Python
