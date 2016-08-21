@@ -202,6 +202,16 @@ For example see :doc:`python/example_05/README`
 TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
 
 
+Python: Refactor if len(list) > 0
+=================================
+
+This is similar to the previous pattern and doesn't need a comprehensive
+example. In fact lists can't have negative length so both examples are
+equivalent in practice.
+
+TL,DR: Refactor ``if len(list) > 0:`` to ``if list:``!
+
+
 Python: Refactor if X is None
 =============================
 
