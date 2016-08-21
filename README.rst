@@ -202,6 +202,33 @@ For example see :doc:`python/example_05/README`
 TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
 
 
+Python: Refactor if X is None
+=============================
+
+When X has a value of None the following mutations are equivalent
+are will survive:
+
+* ``if X is None:``
+* ``if X == None:``
+
+in addition static analyzers will often report comparison to None
+as an offence.
+
+For example see :doc:`python/example_06/README`
+
+
+TL,DR: Refactor ``if X is None:`` to ``if not X:``
+
+
+Python: Testing __eq__ and __ne__
+=================================
+
+For example see :doc:`python/example_07/README`
+
+
+TL,DR: Compare object to itself, None and then change the attributes
+one by one to fully test custom equality methods.
+
 
 Appendix. Mutation testing with Python
 ======================================
