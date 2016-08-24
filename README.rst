@@ -240,6 +240,26 @@ TL,DR: Compare object to itself, None and then change the attributes
 one by one to fully test custom equality methods.
 
 
+Python: Testing sequence of if == int
+=====================================
+
+To completely test the following pattern
+
+.. code-block:: python
+
+    if X == int_1:
+        pass
+    elif X == int_2:
+        pass
+    elif X == int_3:
+        pass
+
+you need to test with values outside the allowed set.
+For example see :doc:`python/example_08/README`
+
+TL,DR: test with all descrete values and then with values
+outside the allowed set.
+
 Appendix. Mutation testing with Python
 ======================================
 
