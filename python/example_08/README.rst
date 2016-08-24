@@ -111,12 +111,12 @@ Source code
 ===========
 
 
-.. literalinclude:: selinux.py
-    :caption: selinux.py
-    :language: python
-
 .. literalinclude:: modes.py
     :caption: modes.py
+    :language: python
+
+.. literalinclude:: selinux.py
+    :caption: selinux.py
     :language: python
 
 .. literalinclude:: tests.py

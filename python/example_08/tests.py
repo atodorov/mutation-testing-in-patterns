@@ -17,7 +17,7 @@ class Test_mode_from_int(unittest.TestCase):
 
 
 class TestCompletely(Test_mode_from_int):
-    def test_with_values_outside_range(self):
+    def test_with_values_outside_set(self):
         for mode in [-1, 9999]:
             m = selinux.mode_from_int(mode)
             self.assertEqual(m, "")
