@@ -173,6 +173,12 @@ TL,DR: when testing ``X != INT`` test with values ``INT-1``, ``INT`` and
 ``INT+1`` to cover all possible scenarios.
 
 
+Python: Refactor if X != 0
+==========================
+
+TL,DR: Refactor ``if X != 0:`` to ``if X:``!
+
+
 Python: Refactor if len(list) != 0
 ==================================
 
@@ -200,6 +206,18 @@ possible mutations.
 For example see :doc:`python/example_05/README`
 
 TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
+
+
+Python: Refactor if len(list) == 0
+==================================
+
+Refactoring this to ::
+
+    if not list:
+        do_something()
+
+
+TL,DR: Refactor ``if len(list) == 0:`` to ``if not list:``!
 
 
 Python: Refactor if len(list) > 0
@@ -259,6 +277,18 @@ For example see :doc:`python/example_08/README`
 
 TL,DR: test with all descrete values and then with values
 outside the allowed set.
+
+
+Python: Missing or extra parameters
+===================================
+
+Depending on how your method signature is defined it is possible to either
+accept additional parameters which are not needed or forget to pass along
+parameters which control internal behavior. Mutation testing helps you
+identify those cases and adjust your code accordingly.
+
+For example see :doc:`python/example_09/README`
+
 
 Appendix. Mutation testing with Python
 ======================================
