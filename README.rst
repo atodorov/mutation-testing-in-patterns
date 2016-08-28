@@ -59,7 +59,7 @@ The mutation test tool has no way of knowing whether your test suite failed
 because the mutant tripped one of the assertions or whether it failed due
 to other reasons.
 
-For example see :doc:`python/example_02/README`
+For example see :doc:`python/example_02/README`.
 
 TL,DR: make sure your test suite is robust and doesn't randomly fail due to
 external factors!
@@ -167,7 +167,7 @@ Most often we do test with value that equals the condition (the golden scenario)
 and either one of the other bordering values but not both. This
 leads to mutations which are not killed.
 
-Example :doc:`python/example_04/README`
+Example :doc:`python/example_04/README`.
 
 TL,DR: when testing ``X != INT`` test with values ``INT-1``, ``INT`` and
 ``INT+1`` to cover all possible scenarios.
@@ -203,7 +203,7 @@ Refactoring this to ::
 is the best way to go about it. This also reduces the total number of
 possible mutations.
 
-For example see :doc:`python/example_05/README`
+For example see :doc:`python/example_05/README`.
 
 TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
 
@@ -242,7 +242,7 @@ are will survive:
 in addition static analyzers will often report comparison to None
 as an offence.
 
-For example see :doc:`python/example_06/README`
+For example see :doc:`python/example_06/README`.
 
 
 TL,DR: Refactor ``if X is None:`` to ``if not X:``
@@ -251,7 +251,7 @@ TL,DR: Refactor ``if X is None:`` to ``if not X:``
 Python: Testing __eq__ and __ne__
 =================================
 
-For example see :doc:`python/example_07/README`
+For example see :doc:`python/example_07/README`.
 
 
 TL,DR: Compare object to itself, None and then change the attributes
@@ -287,7 +287,18 @@ accept additional parameters which are not needed or forget to pass along
 parameters which control internal behavior. Mutation testing helps you
 identify those cases and adjust your code accordingly.
 
-For example see :doc:`python/example_09/README`
+For example see :doc:`python/example_09/README`.
+
+
+Python: On boolean expressions
+==============================
+
+When dealing with non-trivial boolean expressions mutation testing often helps
+put things into perspective.
+For example see :doc:`python/example_10/README`.
+
+
+
 
 
 Appendix. Mutation testing with Python
