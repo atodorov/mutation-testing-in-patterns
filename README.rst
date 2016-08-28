@@ -248,6 +248,24 @@ For example see :doc:`python/example_06/README`.
 TL,DR: Refactor ``if X is None:`` to ``if not X:``
 
 
+Python: Refactor if X is not None
+=================================
+
+When X isn't None the following mutations are equivalent
+are will survive:
+
+* ``if X is not None:``
+* ``if X != None:``
+
+in addition static analyzers will often report comparison to None
+as an offence.
+
+For example see :doc:`python/example_11/README`.
+
+
+TL,DR: Refactor ``if X is not None:`` to ``if X:``
+
+
 Python: Testing __eq__ and __ne__
 =================================
 
