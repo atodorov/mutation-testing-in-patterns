@@ -316,7 +316,16 @@ put things into perspective.
 For example see :doc:`python/example_10/README`.
 
 
+Python: Testing for 0 <= X < 100
+=================================
 
+
+When testing numerical ranges we need at least 4 tests:
+
+* Test with border values
+* Test with values outside the range, ideally +1/-1
+
+For example see :doc:`python/example_12/README`.
 
 
 Appendix. Mutation testing with Python
