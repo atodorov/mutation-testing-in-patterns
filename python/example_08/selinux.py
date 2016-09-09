@@ -9,5 +9,9 @@ def mode_from_int(int_mode):
         retval += "enforcing"
     elif int_mode == modes.SELINUX_PERMISSIVE:
         retval += "permissive"
+# it doesn't matter if we have a trailing else clause or not
+# uncomment this to experiment
+#    else:
+#        retval += "unknown"
 
     return retval
