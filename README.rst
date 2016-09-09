@@ -208,18 +208,6 @@ For example see :doc:`python/example_05/README`.
 TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
 
 
-Python: Refactor if len(list) == 0
-==================================
-
-Refactoring this to ::
-
-    if not list:
-        do_something()
-
-
-TL,DR: Refactor ``if len(list) == 0:`` to ``if not list:``!
-
-
 Python: Refactor if len(list) > 0
 =================================
 
@@ -228,6 +216,74 @@ example. In fact lists can't have negative length so both examples are
 equivalent in practice.
 
 TL,DR: Refactor ``if len(list) > 0:`` to ``if list:``!
+
+
+Python: Refactor if len(list) == 0
+==================================
+
+Refactor ``if len(list) == 0:`` to ``if not list:``! A more
+complicated example, using two lists and boolean operation can be
+seen below.
+
+.. code-block:: diff
+
+    -   if len(self.disabled) == 0 and len(self.enabled) == 0:
+    +   if not (self.disabled or self.enabled):
+
+
+Python: Refactor if len(list) == 1
+==================================
+
+The following code
+
+.. code-block:: python
+
+    if len(ns.password) == 1:
+        self.password = ns.password[0]
+    else:
+        self.password = ""
+
+
+can be refactored into this
+
+.. code-block:: python
+
+    if ns.password:
+        self.password = ns.password[0]
+    else:
+        self.password = ""
+
+.. warning::
+
+    This refactoring may have side effects when the list length is greater
+    than 1, e.g. 2. Depending on your program this may ot may-not be the case.
+
+
+Python: Refactor if len(string) == 0
+====================================
+
+Consider the following example
+
+.. code-block:: python
+
+    # All the port:proto strings go into a comma-separated list.
+    portstr = ",".join(filteredPorts)
+    if len(portstr) > 0:
+        portstr = " --port=" + portstr
+    else:
+        portstr = ""
+
+Similar to previous examples the ``len() > 0`` expression can be refactored.
+Since joining an empty list will produce an empty string the ``else`` block
+is unnecessary. The example can be re-written as
+
+.. code-block:: python
+
+    # All the port:proto strings go into a comma-separated list.
+    portstr = ",".join(filteredPorts)
+    if portstr:
+        portstr = " --port=" + portstr
+
 
 
 Python: Refactor if X is None
@@ -252,7 +308,7 @@ Python: Refactor if X is not None
 =================================
 
 When X isn't None the following mutations are equivalent
-are will survive:
+and will survive:
 
 * ``if X is not None:``
 * ``if X != None:``
@@ -308,14 +364,6 @@ identify those cases and adjust your code accordingly.
 For example see :doc:`python/example_09/README`.
 
 
-Python: On boolean expressions
-==============================
-
-When dealing with non-trivial boolean expressions mutation testing often helps
-put things into perspective.
-For example see :doc:`python/example_10/README`.
-
-
 Python: Testing for 0 <= X < 100
 =================================
 
@@ -326,6 +374,66 @@ When testing numerical ranges we need at least 4 tests:
 * Test with values outside the range, ideally +1/-1
 
 For example see :doc:`python/example_12/README`.
+
+
+Python: On boolean expressions
+==============================
+
+When dealing with non-trivial boolean expressions mutation testing often helps
+put things into perspective.
+For example see :doc:`python/example_10/README`.
+
+
+Refactor multiple boolean expressions
+=====================================
+
+Consider the following code where the expression left of ``and``
+is always the same
+
+.. code-block:: python
+
+    if name == "method":
+         self._clear_seen()
+
+    if name == "method" and value == "cdrom":
+        setattr(self.handler.cdrom, "seen", True)
+    elif name == "method" and value == "harddrive":
+        setattr(self.handler.harddrive, "seen", True)
+    elif name == "method" and value == "nfs":
+        setattr(self.handler.nfs, "seen", True)
+    elif name == "method" and value == "url":
+        setattr(self.handler.url, "seen", True)
+
+This can easily be refactored by removing the
+``name == "method"`` expression and making the subsequent if
+statements nested under the first one.
+
+.. code-block:: python
+
+    if name == "method":
+         self._clear_seen()
+
+        if value == "cdrom":
+            setattr(self.handler.cdrom, "seen", True)
+        elif value == "harddrive":
+            setattr(self.handler.harddrive, "seen", True)
+        elif value == "nfs":
+            setattr(self.handler.nfs, "seen", True)
+        elif value == "url":
+            setattr(self.handler.url, "seen", True)
+
+The refactored code is shorter and provides less mutation sites thus
+reducing overall mutation test execution time.
+This code can be refactored even more aggressively into
+
+.. code-block:: python
+
+    if name == "method":
+         self._clear_seen()
+
+        if value in ["cdrom", "harddrive", "nfs", "url"]:
+            setattr(getattr(self.handler, value), "seen", True)
+
 
 
 Appendix. Mutation testing with Python
