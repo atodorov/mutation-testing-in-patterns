@@ -325,11 +325,52 @@ TL,DR: Refactor ``if X is not None:`` to ``if X:``
 Python: Testing __eq__ and __ne__
 =================================
 
+When objects are compared by comparing their attributes then full
+mutation test coverage can be achieved by comparing the object to itself,
+comparing to None, comparing two objects with the same attribute values
+and then test by changing the attributes one by one.
+
 For example see :doc:`python/example_07/README`.
 
+Consider if there is the following mistake in the example:
 
-TL,DR: Compare object to itself, None and then change the attributes
-one by one to fully test custom equality methods.
+.. code-block:: python
+
+    def __eq__(self, other):
+        if not y:
+            return False
+
+        return self.device and self.device == y.device
+
+Notice the redundant `self.device and` in the expression above!
+When `self.device` contains a value (string in this case) the expression is
+equivalent to `self.device == other.device`. On the other hand when
+`self.device` is `None` or an empty string the expression will always return `False`!
+
+If we have all of the above tests (which mutation testing has identified)
+then our test suite will fail and properly detect the defect ::
+
+    $ python -m nose -- tests.py
+    F.....
+    ======================================================================
+    FAIL: Newly created objects with the same attribute values
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+      File "~/example_07/tests.py", line 15, in test_default_objects_are_always_equal
+        self.assertEqual(self.sandwich_1, self.sandwich_2)
+    AssertionError: <sandwich.Sandwich object at 0x7f4603cece80> != <sandwich.Sandwich object at 0x7f4603ceceb8>
+
+    ----------------------------------------------------------------------
+    Ran 6 tests in 0.001s
+
+    FAILED (failures=1)
+
+.. warning::
+
+    At the time of writing *Cosmic Ray* will not fail if there is a failure
+    during the baseline test execution and all mutations will be reported as killed
+    because, well the test suite failed! This is reported in
+    `CR#111 <https://github.com/sixty-north/cosmic-ray/issues/111>`_.
 
 
 Python: Testing sequence of if == int
