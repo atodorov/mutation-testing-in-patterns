@@ -434,7 +434,7 @@ is always the same
 .. code-block:: python
 
     if name == "method":
-         self._clear_seen()
+        self._clear_seen()
 
     if name == "method" and value == "cdrom":
         setattr(self.handler.cdrom, "seen", True)
@@ -452,7 +452,7 @@ statements nested under the first one.
 .. code-block:: python
 
     if name == "method":
-         self._clear_seen()
+        self._clear_seen()
 
         if value == "cdrom":
             setattr(self.handler.cdrom, "seen", True)
@@ -470,7 +470,7 @@ This code can be refactored even more aggressively into
 .. code-block:: python
 
     if name == "method":
-         self._clear_seen()
+        self._clear_seen()
 
         if value in ["cdrom", "harddrive", "nfs", "url"]:
             setattr(getattr(self.handler, value), "seen", True)
