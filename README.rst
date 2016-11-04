@@ -394,6 +394,27 @@ TL,DR: test with all descrete values and then with values
 outside the allowed set.
 
 
+Python: Testing sequence of if == string
+========================================
+
+To fully test the following pattern
+
+.. code-block:: python
+
+    if X == "string_1":
+        pass
+    elif X == "string_2":
+        pass
+    elif X == "string_3":
+        pass
+
+you need to test with values outside the allowed set.
+For example see :doc:`python/example_08/README_str`
+
+TL,DR: test with all descrete values and then with values
+outside the allowed set.
+
+
 Python: Missing or extra parameters
 ===================================
 
