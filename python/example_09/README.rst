@@ -8,7 +8,6 @@ Reproducer
 
     $ pip install nose
     $ pip install https://github.com/sixty-north/cosmic-ray/zipball/master
-    $ celery -A cosmic_ray.tasks.worker worker
 
 
 Initially we start with a set of tests which doesn't validate default values

@@ -13,7 +13,6 @@ Example
 
     $ pip install nose
     $ pip install https://github.com/sixty-north/cosmic-ray/zipball/master
-    $ celery -A cosmic_ray.tasks.worker worker
 
 In ``example1.py`` we're accepting ``None`` as default parameter value and
 correctly identified 3 test cases - when password is a string, when it is

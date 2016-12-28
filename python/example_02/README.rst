@@ -12,7 +12,6 @@ Reproducer
 
     $ pip install nose
     $ pip install https://github.com/sixty-north/cosmic-ray/zipball/master
-    $ celery -A cosmic_ray.tasks.worker worker
 
     $ cosmic-ray run --test-runner nose --baseline=10 example.json flaky.py -- test_flaky.py:TestFlaky
     $ cosmic-ray report example.json 
@@ -97,6 +96,13 @@ this time ::
     $ cosmic-ray report example.json --full-report
     $ ls -l test.txt
     ls: cannot access test.txt: No such file or directory
+
+.. note::
+
+    Since commit `db7b7c6` Cosmic Ray will fail if baseline test execution fails.
+    This isn't the same as having unreliable tests but may help you identify
+    something isn't right sooner than later. If you want to experiment execute the
+    above `cosmic-ray run` command twice without deleting `test.txt` between test runs!
 
 
 Source code

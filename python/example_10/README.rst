@@ -12,7 +12,6 @@ Example
 
     $ pip install nose
     $ pip install https://github.com/sixty-north/cosmic-ray/zipball/master
-    $ celery -A cosmic_ray.tasks.worker worker
 
 Initially we start with the example in ``boolops1.py`` and ``test1.py``.
 Although the test appears to be correct, all possible values for ``list_a`` and

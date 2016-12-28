@@ -47,8 +47,6 @@ change the module search path at runtime. Depending on how the
 mutation testing tool works these operations may interfere with it.
 For example see :doc:`python/example_01/README`.
 
-TL,DR: explore your test tool first and manually verify the results before
-going further. Unless you know the tools don't trust them!
 
 Make sure your tests work
 =========================
@@ -79,7 +77,7 @@ The basic mutation test algorithm is this
             run_tests()
 
 - **mutation-operators** are the things that make small changes to your code
-- **operator.sites** are the places in your code where this operator can be
+- **operator.sites** are the places in your code where operators can be
   applied
 
 
@@ -111,8 +109,15 @@ and executes only the test which is related to this file.
 For *pykickstart* this approach reduced  the entire execution time to little
 over 6 hours!
 
-TL,DR: Good source code and test organization will allow easy division of test
-runs and tremendously speed up your mutation testing execution time!
+.. note::
+
+    Other tools and languages may have a convention of how tests are organized or
+    which tests are executed by the mutation testing tool. For example in Ruby the
+    convention is to have all tests under `spec/*_spec.rb` which maps with the idea
+    proposed above. Mutant, the Ruby mutation testing tool, uses this convention to
+    find the tests it needs. For Python, on the other hand, the user needs to manually
+    specify which tests should be executed!
+
 
 Fail fast
 =========
@@ -123,105 +128,78 @@ most of the tools have no way of telling whether or not the failed test is
 related to the mutated code. That means it also doesn't matter if there are
 more than one failing tests so you can use this to your advantage.
 
-TL,DR: Whenever your test tools and framework support the **fail fast** option
+Whenever your test tools and framework support the **fail fast** option
 make use of it to reduce test execution time even more!
 
-Python: Refactor if string != ""
-================================
+Refactor comparison to empty string
+===================================
 
 Comparison operators may be mutated with each other which gives,
-depending on the langauge about 10 possible mutations.
+depending on the langauge, about 10 possible mutations.
 
-Every time ``string`` is not an empty string the following 3 variants
+Every time ``S`` is not an empty string the following 3 variants
 are evaluated to ``True``:
 
-* ``if string != ""``
-* ``if string > ""``
-* ``if string not in ""``
+* ``if S != ""``
+* ``if S > ""``
+* ``if S not in ""``
 
 The existing test cases pass and these mutations are never killed.
-Refactoring this to ::
-
-    if string:
-        do_something()
-
-
-is the best way to go about it. This also reduces the total number of
+In languages like Python, non-empty sequences are evaluated to `True` in boolean
+context and you don't need to use comparisons. This reduces the number of
 possible mutations.
 
-For example see :doc:`python/example_03/README`
+For Python you may use the *emptystring* extension of pylint
 
-TL,DR: Refactor ``if string != "":`` to ``if string:``!
+.. code-block:: bash
 
+    pylint a.py --load-plugins=pylint.extensions.emptystring
 
-Python: Testing for X != 1
-==========================
+See `pylint #1183 <https://github.com/PyCQA/pylint/pull/1183>`_ for more info and
+:doc:`python/example_03/README` for an example.
 
-When testing the not equals condition we need at least 3 test cases:
+.. warning::
 
-* Test with value smaller than the condition
-* Test with value that equals the condition
-* Test with value greater than the condition
-
-Most often we do test with value that equals the condition (the golden scenario)
-and either one of the other bordering values but not both. This
-leads to mutations which are not killed.
-
-Example :doc:`python/example_04/README`.
-
-TL,DR: when testing ``X != INT`` test with values ``INT-1``, ``INT`` and
-``INT+1`` to cover all possible scenarios.
+    In some cases empty string is an acceptable value and refactoring will
+    change the behavior of the program! Be careful when doing this.
 
 
-Python: Refactor if X != 0
-==========================
+Refactor comparison to zero
+===========================
 
-TL,DR: Refactor ``if X != 0:`` to ``if X:``!
+This is similar to the previous section but for integer values. For Python use
+the *comparetozero* extension to detect possible offenses.
+
+.. code-block:: bash
+
+    pylint a.py --load-plugins=pylint.extensions.comparetozero
+
+See `pylint #1243 <https://github.com/PyCQA/pylint/pull/1243>`_ for more info.
 
 
-Python: Refactor if len(list) != 0
-==================================
+Python: Refactor len(X) comparisons to zero
+===========================================
 
-Every time ``list`` is not an empty list the following variants
+Every time ``X`` is not an empty sequence the following variants
 are evaluated to ``True`` and result in surviving mutants:
 
-* ``if len(lst) != 0``
-* ``if len(lst) > 0``
+* ``if len(X) != 0``
+* ``if len(X) > 0``
 
 Additionally if we don't have a test to validate the ``if`` body,
 for example that it raises an exception, then the following mutation
 will also survive:
 
-* ``if len(lst) < 0``
+* ``if len(X) < 0``
 
 Refactoring this to ::
 
-    if list:
+    if X:
         do_something()
 
 
 is the best way to go about it. This also reduces the total number of
-possible mutations.
-
-For example see :doc:`python/example_05/README`.
-
-TL,DR: Refactor ``if len(list) != 0:`` to ``if list:``!
-
-
-Python: Refactor if len(list) > 0
-=================================
-
-This is similar to the previous pattern and doesn't need a comprehensive
-example. In fact lists can't have negative length so both examples are
-equivalent in practice.
-
-TL,DR: Refactor ``if len(list) > 0:`` to ``if list:``!
-
-
-Python: Refactor if len(list) == 0
-==================================
-
-Refactor ``if len(list) == 0:`` to ``if not list:``! A more
+possible mutations. A more
 complicated example, using two lists and boolean operation can be
 seen below.
 
@@ -229,6 +207,36 @@ seen below.
 
     -   if len(self.disabled) == 0 and len(self.enabled) == 0:
     +   if not (self.disabled or self.enabled):
+
+
+Consider the following example
+
+.. code-block:: python
+
+    # All the port:proto strings go into a comma-separated list.
+    portstr = ",".join(filteredPorts)
+    if len(portstr) > 0:
+        portstr = " --port=" + portstr
+    else:
+        portstr = ""
+
+Similar to previous examples the ``len() > 0`` expression can be refactored.
+Since joining an empty list will produce an empty string the ``else`` block
+is not necessary. The example can be re-written as
+
+.. code-block:: python
+
+    # All the port:proto strings go into a comma-separated list.
+    portstr = ",".join(filteredPorts)
+    if portstr:
+        portstr = " --port=" + portstr
+
+In pylint 2.0 there is a new checker called *len-as-condition* which will
+warn you about code snippets that compare the result of a `len()` call to zero.
+For more information see
+`pylint #1154 <https://github.com/PyCQA/pylint/pull/1154>`_.
+
+For practical example see :doc:`python/example_05/README`.
 
 
 Python: Refactor if len(list) == 1
@@ -259,31 +267,20 @@ can be refactored into this
     than 1, e.g. 2. Depending on your program this may ot may-not be the case.
 
 
-Python: Refactor if len(string) == 0
-====================================
+Testing for X != 1
+==================
 
-Consider the following example
+When testing the not equals condition we need at least 3 test cases:
 
-.. code-block:: python
+* Test with value smaller than the condition
+* Test with value that equals the condition
+* Test with value greater than the condition
 
-    # All the port:proto strings go into a comma-separated list.
-    portstr = ",".join(filteredPorts)
-    if len(portstr) > 0:
-        portstr = " --port=" + portstr
-    else:
-        portstr = ""
+Most often we do test with value that equals the condition (the golden scenario)
+and either one of the other bordering values but not both. This
+leads to mutations which are not killed.
 
-Similar to previous examples the ``len() > 0`` expression can be refactored.
-Since joining an empty list will produce an empty string the ``else`` block
-is unnecessary. The example can be re-written as
-
-.. code-block:: python
-
-    # All the port:proto strings go into a comma-separated list.
-    portstr = ",".join(filteredPorts)
-    if portstr:
-        portstr = " --port=" + portstr
-
+Example :doc:`python/example_04/README`.
 
 
 Python: Refactor if X is None
@@ -295,31 +292,21 @@ are will survive:
 * ``if X is None:``
 * ``if X == None:``
 
-in addition static analyzers will often report comparison to None
-as an offence.
+in addition static analyzers may report comparison to None
+as an offence. To handle this refactor
+``if X is None:`` to ``if not X:`` when possible.
+
 
 For example see :doc:`python/example_06/README`.
-
-
-TL,DR: Refactor ``if X is None:`` to ``if not X:``
 
 
 Python: Refactor if X is not None
 =================================
 
-When X isn't None the following mutations are equivalent
-and will survive:
-
-* ``if X is not None:``
-* ``if X != None:``
-
-in addition static analyzers will often report comparison to None
-as an offence.
-
+This is the opposite of the previous section.
+Refactor ``if X is not None:`` to ``if X:``.
 For example see :doc:`python/example_11/README`.
 
-
-TL,DR: Refactor ``if X is not None:`` to ``if X:``
 
 
 Python: Testing __eq__ and __ne__
@@ -365,12 +352,13 @@ then our test suite will fail and properly detect the defect ::
 
     FAILED (failures=1)
 
-.. warning::
+.. note::
 
-    At the time of writing *Cosmic Ray* will not fail if there is a failure
-    during the baseline test execution and all mutations will be reported as killed
-    because, well the test suite failed! This is reported in
-    `CR#111 <https://github.com/sixty-north/cosmic-ray/issues/111>`_.
+    At the time of writing *Cosmic Ray* did not fail if there was a failure
+    during the baseline test execution and all mutations would be reported as killed
+    because, well the test suite failed! This was reported in
+    `CR#111 <https://github.com/sixty-north/cosmic-ray/issues/111>`_ and fixed in
+    `CR#181 <https://github.com/sixty-north/cosmic-ray/pull/181>`_.
 
 
 Python: Testing sequence of if == int
@@ -387,11 +375,8 @@ To completely test the following pattern
     elif X == int_3:
         pass
 
-you need to test with values outside the allowed set.
+you need to test with all descrete values plus values outside the allowed set.
 For example see :doc:`python/example_08/README`
-
-TL,DR: test with all descrete values and then with values
-outside the allowed set.
 
 
 Python: Testing sequence of if == string
@@ -408,11 +393,8 @@ To fully test the following pattern
     elif X == "string_3":
         pass
 
-you need to test with values outside the allowed set.
-For example see :doc:`python/example_08/README_str`
-
-TL,DR: test with all descrete values and then with values
-outside the allowed set.
+you need to test with all possible string values as well as with values
+outside the allowed set. For example see :doc:`python/example_08/README_str`.
 
 
 Python: Missing or extra parameters
@@ -432,8 +414,10 @@ Python: Testing for 0 <= X < 100
 
 When testing numerical ranges we need at least 4 tests:
 
-* Test with border values
+* Test with both border values
 * Test with values outside the range, ideally +1/-1
+* Testing with a value in the middle of the range is not required
+  for full mutation coverage!
 
 For example see :doc:`python/example_12/README`.
 
@@ -442,7 +426,8 @@ Python: On boolean expressions
 ==============================
 
 When dealing with non-trivial boolean expressions mutation testing often helps
-put things into perspective.
+put things into perspective. It causes you to rethink the expression which often
+leads to refactoring and killing mutants.
 For example see :doc:`python/example_10/README`.
 
 
@@ -506,13 +491,7 @@ tool for Python. It is recommended that you install the latest version from git:
 
     pip install https://github.com/sixty-north/cosmic-ray/zipball/master
 
-*Cosmic-Ray* uses *Celery* to allow concurrent execution of workers (e.g.
-mutation test jobs). To start the worker ::
-
-    cd myproject/
-    celery -A cosmic_ray.tasks.worker worker
-
-To execute a test job (called session) use a different terminal and ::
+To execute a test job (called session)::
 
     cd myproject/
     cosmic-ray run --baseline=10 session_name.json some/module.py -- tests/some/test.py
@@ -532,4 +511,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

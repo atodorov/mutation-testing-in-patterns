@@ -8,7 +8,6 @@ Reproducer
 
     $ pip install nose
     $ pip install https://github.com/sixty-north/cosmic-ray/zipball/master
-    $ celery -A cosmic_ray.tasks.worker worker
 
     $ cosmic-ray run --test-runner nose --baseline=10 example.json hello.py -- test_hello.py:TestHello
     $ cosmic-ray report example.json
