@@ -18,6 +18,19 @@ information about installing and running the necessary tools and examples.
 .. toctree::
    :maxdepth: 2
 
+Mutation testing tools
+======================
+
+This is a list of mutation testing tools which are under active use and
+maintenance from the community:
+
+* Python - `Cosmic Ray <https://github.com/sixty-north/cosmic-ray>`_
+* Ruby - `Mutant <https://github.com/mbj/mutant>`_
+* Java - `Pitest <https://github.com/hcoles/pitest>`_
+* JavaScript - `Stryker <https://github.com/stryker-mutator/stryker>`_
+* PHP - `Humbug <https://github.com/padraic/humbug>`_
+
+
 Make sure your tools work
 =========================
 
@@ -57,10 +70,10 @@ The mutation test tool has no way of knowing whether your test suite failed
 because the mutant tripped one of the assertions or whether it failed due
 to other reasons.
 
-For example see :doc:`python/example_02/README`.
 
-TL,DR: make sure your test suite is robust and doesn't randomly fail due to
+Make sure your test suite is robust and doesn't randomly fail due to
 external factors!
+For example see :doc:`python/example_02/README`.
 
 
 
@@ -482,28 +495,6 @@ This code can be refactored even more aggressively into
             setattr(getattr(self.handler, value), "seen", True)
 
 
-
-Appendix. Mutation testing with Python
-======================================
-
-`Cosmic-Ray <https://github.com/sixty-north/cosmic-ray>`_ is the mutation testing
-tool for Python. It is recommended that you install the latest version from git::
-
-    pip install https://github.com/sixty-north/cosmic-ray/zipball/master
-
-To execute a test job (called session)::
-
-    cd myproject/
-    cosmic-ray run --baseline=10 session_name.json some/module.py -- tests/some/test.py
-
-.. note::
-
-    Test runner and additional test parameters can be specified. Refer to Cosmic-Ray's
-    documentation for more details!
-
-To view the mutation results execute ::
-
-    cosmic-ray report session_name.json
 
 Indices and tables
 ==================
