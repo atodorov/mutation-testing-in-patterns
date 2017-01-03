@@ -30,6 +30,10 @@ maintenance from the community:
 * JavaScript - `Stryker <https://github.com/stryker-mutator/stryker>`_
 * PHP - `Humbug <https://github.com/padraic/humbug>`_
 
+For LLVM-based languages such as C, C++, Rust and Objective-C checkout
+[mull](https://github.com/mull-project/mull), which looks like a nice project
+but may not be ready for production use!
+
 
 Make sure your tools work
 =========================
