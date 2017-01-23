@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_12/README.rst:2
+msgid "Testing for 0 <= X <= 100"
+msgstr "針對 0 <= X <= 100 的測試"
+
+#: ../../python/example_12/README.rst:4
+msgid ""
+"It is common for programs to expect numerical variables to accept values "
+"matching a certain range. A good example is a ``percent`` variable with "
+"allowed values from 0 to 100 inclusive."
+msgstr "在程式中我們很常見到，需要數值在某個特定範圍才接受的狀況。"
+"一個範例是 ``percent (百分比)`` 變數的數值需要在 0 到 100 之間。"
+
+#: ../../python/example_12/README.rst:8
+msgid ""
+"Test for such code will often validate correct operation with a value "
+"inside the range and expect an error for a value outside the range. As a "
+"bonus the test may be expecting errors when testing with values on both "
+"sides of the range!"
+msgstr ""
+
+#: ../../python/example_12/README.rst:15
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_12/README.rst:89
+msgid ""
+"To fully test this code you have to test with both border values and with"
+" the next possible values, which are outside of the range. Testing with a"
+" value that falls within the range, but isn't a border one doesn't affect"
+" mutation testing. ::"
+msgstr ""
+
+#: ../../python/example_12/README.rst:103
+msgid "This is similar to :doc:`../example_04/README`"
+msgstr ""
+
+#: ../../python/example_12/README.rst:106
+msgid "Source code"
+msgstr "程式碼"

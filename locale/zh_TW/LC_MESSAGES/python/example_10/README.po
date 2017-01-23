@@ -1,0 +1,70 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_10/README.rst:2
+msgid "Testing and refactoring boolean expressions"
+msgstr "測試與重構布林表達式"
+
+#: ../../python/example_10/README.rst:4
+msgid ""
+"When dealing with non-trivial boolean expressions mutation testing often "
+"helps put things into perspective. It causes you to rethink the "
+"expression which often leads to refactoring and killing mutants."
+msgstr "當在處理重要的布林表達式時，突變測試通常可以幫你透撤整個狀況。"
+"他讓你需要重新思考整個表達式，通常這會讓你重構程式碼以及殺死突變。"
+
+#: ../../python/example_10/README.rst:9
+msgid "Example"
+msgstr "範例"
+
+#: ../../python/example_10/README.rst:16
+msgid ""
+"Initially we start with the example in ``boolops1.py`` and ``test1.py``. "
+"Although the test appears to be correct, all possible values for "
+"``list_a`` and ``list_b`` are tested, there are still surviving mutants. "
+"::"
+msgstr ""
+
+#: ../../python/example_10/README.rst:112
+msgid ""
+"If we proceed to refactor ``len(list)`` comparisons as shown previously "
+"it is easier to figure out that the boolean function is XNOR (if and only"
+" if), also called logical equality. In ``boolops2.py`` *Cosmic-Ray* "
+"doesn't detect any possible mutations because at the moment of writing it"
+" doesn't support mutating boolean operators. ::"
+msgstr ""
+
+#: ../../python/example_10/README.rst:124
+msgid ""
+"Another possible refactoring is ``boolops3.py`` where valid parameters "
+"are enumerated before the condition is checked. ::"
+msgstr ""
+
+#: ../../python/example_10/README.rst:133
+msgid ""
+"Yet another possible refactoring is ``boolops4.py`` where the condition "
+"is expressed using the built-ins ``any`` and ``all``. Unfortunately "
+"*Cosmic-Ray* doesn't recognize these as possible mutations either. ::"
+msgstr ""
+
+#: ../../python/example_10/README.rst:145
+msgid "Source code"
+msgstr "程式碼"
+

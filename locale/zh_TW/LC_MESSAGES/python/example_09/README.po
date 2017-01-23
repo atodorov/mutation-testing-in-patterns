@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_09/README.rst:2
+msgid "Missing or extra method parameters"
+msgstr "遺失或額外的方法參數"
+
+#: ../../python/example_09/README.rst:5
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_09/README.rst:13
+msgid ""
+"Initially we start with a set of tests which doesn't validate default "
+"values for method parameters. It may validate some other behavior which "
+"was considered more important at the time. In this example the test is "
+"empty because there is no other behavior present. This is ``test1.py``. "
+"Mutation testing will identify the missing tests as shown below ::"
+msgstr ""
+
+#: ../../python/example_09/README.rst:85
+msgid ""
+"Then we proceed to add the missing tests in ``test2.py``. Executing this "
+"test stand-alone identifies that something is wrong with the code under "
+"test. The ``Motorway`` constructor passes along an extra parameter which "
+"isn't consumed in the base class. In the ``RuralRoad`` constructor we've "
+"forgotten to pass the ``speedLimit`` parameter to the base constructor. "
+"::"
+msgstr ""
+
+#: ../../python/example_09/README.rst:115
+msgid "Next we proceed to refactor the code under test in ``roads2.py``"
+msgstr ""
+
+#: ../../python/example_09/README.rst:139
+msgid ""
+"In this example the refactored file is called ``roads2.py`` and its test "
+"is called ``test3.py``."
+msgstr ""
+
+#: ../../python/example_09/README.rst:154
+msgid ""
+"Finally we can verify that the test and refactored code work together and"
+" all mutants have been killed ::"
+msgstr ""
+
+#: ../../python/example_09/README.rst:170
+msgid "Source code"
+msgstr "程式碼"
+
+

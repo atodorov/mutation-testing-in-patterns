@@ -1,0 +1,69 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_08/README_str.rst:2
+msgid "Testing sequence of if == string statements"
+msgstr "測試 if == string 序列"
+
+#: ../../python/example_08/README_str.rst:4
+msgid "Sometimes in programs we see the following pattern"
+msgstr "有時候程式中會有這樣的模式"
+
+#: ../../python/example_08/README_str.rst:15
+msgid ""
+"``X`` is compared to several allowed values of type string. It is "
+"important to notice that ``X`` accepts a descrete set of allowed values. "
+"When we forget to test with string values outside the allowed set "
+"mutation testing will produce surviving mutants."
+msgstr "``X`` 與許多合法的字串去做比較。當我們忘記測試合法字串外的值的時候，"
+"突變測試會產生存活的突變。"
+
+#: ../../python/example_08/README_str.rst:22
+msgid "The order of if statements isn't important."
+msgstr "順序並不是這麼的重要"
+
+#: ../../python/example_08/README_str.rst:26
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_08/README_str.rst:148
+msgid "Killing the mutants"
+msgstr "殺死突變"
+
+#: ../../python/example_08/README_str.rst:151
+msgid ""
+"To kill some mutants we need to test with values outside the allowed set "
+"::"
+msgstr "要殺死突變我們需要測試合法數值外的值："
+
+#: ../../python/example_08/README_str.rst:157
+msgid "Remaining mutants"
+msgstr "剩餘突變"
+
+#: ../../python/example_08/README_str.rst:159
+msgid ""
+"When testing string comparisons the ==/in mutations are equivalent and "
+"can not be killed:"
+msgstr "當在測試字串比較時 ==/in 兩個突變是相等的且不能被殺死"
+
+#: ../../python/example_08/README_str.rst:168
+msgid "Source code"
+msgstr "程式碼"
+

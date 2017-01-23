@@ -1,0 +1,653 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../README.rst:2
+msgid "Mutation Testing in Patterns"
+msgstr "突變測試的測試模式 - Mutation Testing in Patterns"
+
+#: ../../README.rst:8
+msgid ""
+"Mutation testing is a technique used to evaluate the quality of existing "
+"software tests. Mutation testing involves modifying a program in small "
+"ways, for example replacing ``True`` constants with ``False`` and re-"
+"running its test suite. When the test suite fails the *mutant* is "
+"*killed*. This tells us how good the test suite is. The goal of this "
+"paper is to describe different software and testing patterns related "
+"using practical examples."
+msgstr ""
+"突變測試是一個用來衡量現有軟體測試程式質量的一種技巧。突變測試牽涉到小量變更程式，"
+"例如將 ``True`` 置換為 ``False``，然後重新運行測試程式。當測試程式失敗則代表"
+"*突變* 被 *殺死*。這能夠告訴我們測試程式的質量為何。這個指南的目標是使用實際的案例"
+"來描述不同的軟體以及測試模式。"
+
+#: ../../README.rst:15
+msgid ""
+"Some of them are language specific so please see the relevant sections "
+"for information about installing and running the necessary tools and "
+"examples."
+msgstr "某些部份的描述與該語言特性有關，敬請參閱相關的章節來取得有關安裝以及"
+"運行必要工具、範例的資訊。"
+
+#: ../../README.rst:22
+msgid "Mutation testing tools"
+msgstr "突變測試工具 - Mutation testing tools"
+
+#: ../../README.rst:24
+msgid ""
+"This is a list of mutation testing tools which are under active use and "
+"maintenance from the community:"
+msgstr "這是一份突變測試工具的列表，列表中的工具都有活躍使用以及社群維護。"
+
+#: ../../README.rst:27
+msgid "Python - `Cosmic Ray <https://github.com/sixty-north/cosmic-ray>`_"
+msgstr ""
+
+#: ../../README.rst:28
+msgid "Ruby - `Mutant <https://github.com/mbj/mutant>`_"
+msgstr ""
+
+#: ../../README.rst:29
+msgid "Java - `Pitest <https://github.com/hcoles/pitest>`_"
+msgstr ""
+
+#: ../../README.rst:30
+msgid "JavaScript - `Stryker <https://github.com/stryker-mutator/stryker>`_"
+msgstr ""
+
+#: ../../README.rst:31
+msgid "PHP - `Humbug <https://github.com/padraic/humbug>`_"
+msgstr ""
+
+#: ../../README.rst:33
+msgid ""
+"For LLVM-based languages such as C, C++, Rust and Objective-C checkout "
+"[mull](https://github.com/mull-project/mull), which looks like a nice "
+"project but may not be ready for production use!"
+msgstr "LLVM-based 的語言，如 C、C++、Rust、與 Objective-C 可以參考 `mull <https://github.com/mull-project/mull>`_ "
+"，一個看起來不錯專案，但是可能還沒 ready for production。"
+
+#: ../../README.rst:39
+msgid "Make sure your tools work"
+msgstr "確保你的工具可用 - Make sure your tools work "
+
+#: ../../README.rst:41
+msgid ""
+"Mutation testing relies on dynamically modifying program modules and "
+"loading the mutated instance from memory. Depending on the language "
+"specifics there may be several ways to refer to the same module. In "
+"Python the following are equivalent"
+msgstr "突變測試依賴於動態更改程式模組以及讀取從記憶體中變異 instance。"
+"根據不同的程式語言會有不同的方式來指涉同一個模組。在 Python 中下面的程式碼"
+"是等價的："
+
+#: ../../README.rst:56
+msgid "The equivalency here is in terms of having access to the same module API."
+msgstr "\"等價\"在這邊的意思是訪問了相同的模組 API。"
+
+#: ../../README.rst:58
+msgid ""
+"When we mutation test the right-most ``ham`` module our tools may not be "
+"able to resolve to the same module if various importing styles are used. "
+"For example see :doc:`python/example_00/README`."
+msgstr "如果有許多不同的 importing styles 被使用的話，"
+"當我們對最左邊的 ``ham`` 模組進行突變，我們的工具可能沒有辦法解析出相同的模組。"
+"請參考範例： :doc:`python/example_00/README`."
+
+#: ../../README.rst:62
+msgid ""
+"Another possible issue is with programs that load modules dynamically or "
+"change the module search path at runtime. Depending on how the mutation "
+"testing tool works these operations may interfere with it. For example "
+"see :doc:`python/example_01/README`."
+msgstr "另一個可能的問題是程式會動態的讀取模組，或是在執行時期改變模組搜尋的路徑。"
+"根據突變測試工具的不同，這些操作可能會產生一些相關的問題。範例請參考："
+":doc:`python/example_01/README`"
+
+#: ../../README.rst:69
+msgid "Make sure your tests work"
+msgstr "確保你的測試可行 - Make sure your tests work"
+
+#: ../../README.rst:71
+msgid ""
+"Mutation testing relies on the fact that your test suite will fail when a"
+" mutation is introduced. In turn any kind of failure will kill the "
+"mutant! The mutation test tool has no way of knowing whether your test "
+"suite failed because the mutant tripped one of the assertions or whether "
+"it failed due to other reasons."
+msgstr "突變測試的可靠度是基於當引入突變時，你的測試套件 (test suite) 會失敗 (fail)。"
+"這代表任何的失敗都會殺死突變！突變測試工具沒有辦法得知你的測試套件是因為突變引起一個"
+"斷言還是因為其他原因而失敗。"
+
+#: ../../README.rst:78
+msgid ""
+"Make sure your test suite is robust and doesn't randomly fail due to "
+"external factors! For example see :doc:`python/example_02/README`."
+msgstr "確保你的測試套件 (test suite) 是穩健的，並且不會因為外部因素"
+"而隨機的失敗！請參考範例 :doc:`python/example_02/README`。"
+
+#: ../../README.rst:85
+msgid "Divide and conquer"
+msgstr "分治法 - Divide and Conquer"
+
+#: ../../README.rst:87
+msgid "The basic mutation test algorithm is this"
+msgstr "最為基本的突變測試演算法如下："
+
+#: ../../README.rst:96
+msgid "**mutation-operators** are the things that make small changes to your code"
+msgstr "**mutation-operators** 是指那些在程式中有微小變動的部份。 "
+
+#: ../../README.rst:97
+msgid ""
+"**operator.sites** are the places in your code where operators can be "
+"applied"
+msgstr "**operator.sites** 代表在你的程式中突變運算子可以被使用的地方。"
+
+#: ../../README.rst:101
+msgid ""
+"As you can see mutation testing is a very expensive operation. For "
+"example the `pykickstart <http://github.com/rhinstaller/pykickstart>`_ "
+"project started with 5523 possible mutations and 347 tests, which took on"
+" average 100 seconds to execute. A full mutation testing execution needs "
+"more than 6 days to complete!"
+msgstr "我們可以得知，突變測試是一個代價非常高的操作。舉例而言，"
+"`pykickstart <https://github.com/rhinstaller/pykickstart>`_ "
+"專案約有 5523 個可能的突變與 347 個測試，這會讓測試平均時間來到 100 秒左右。"
+"一個完整的突變測試需要花 6 天的時間才能夠運行完成。"
+
+#: ../../README.rst:107
+msgid ""
+"In practice however not all tests are related to, or even make use of all"
+" program modules. This means that mutated operators are only tested via "
+"subset of the entire test suite. This fact can be used to reduce "
+"execution time by scheduling mutation tests against each individual "
+"file/module using only the tests which are related to it. The best case "
+"scenario is when your source file names map directly to test file names."
+msgstr "不過，在實務上並不是所有的測試都有必要。這代表突變運算子只需要測試"
+"整個測試套件中的子集就可以。如此可以透過對每個獨立的檔案或是模組排程"
+"測試那些相關的部份來降低執行的時間。最佳情況是所有的原始檔名都有相對應的測試檔案名稱。"
+
+#: ../../README.rst:115
+msgid "For example something like this"
+msgstr "舉例而言："
+
+#: ../../README.rst:124
+msgid ""
+"Where **runTests** executes the mutation testing tool against a single "
+"file and executes only the test which is related to this file. For "
+"*pykickstart* this approach reduced  the entire execution time to little "
+"over 6 hours!"
+msgstr "**runTests** 只對於原始檔在有相對應的測試程式時才會運行。這個方法讓"
+"**pykickstart** 的突變測試運行時間減少到只需要6個小時！。"
+
+#: ../../README.rst:131
+msgid ""
+"Other tools and languages may have a convention of how tests are "
+"organized or which tests are executed by the mutation testing tool. For "
+"example in Ruby the convention is to have all tests under "
+"`spec/*_spec.rb` which maps with the idea proposed above. Mutant, the "
+"Ruby mutation testing tool, uses this convention to find the tests it "
+"needs. For Python, on the other hand, the user needs to manually specify "
+"which tests should be executed!"
+msgstr "其他語言或是工具可能會有其組織突變測試的慣例。舉例而言，"
+"Ruby 的慣例是將 `spec/*_spec.rb` 的測試以前面提到的方式表示。Mutant，"
+"Ruby 的突變測試工具，會使用這個慣例來找尋需要的測試。Python 的話，使用者"
+"則必須要自己決定哪個部份需要被執行！"
+
+#: ../../README.rst:140
+msgid "Fail fast"
+msgstr "快速的失敗 - Fail fast"
+
+#: ../../README.rst:142
+msgid ""
+"Mutation testing relies on your test suite failing when it detects a "
+"faulty mutation. It doesn't matter which particular test has failed "
+"because most of the tools have no way of telling whether or not the "
+"failed test is related to the mutated code. That means it also doesn't "
+"matter if there are more than one failing tests so you can use this to "
+"your advantage."
+msgstr "突變測試是基於當你的測試套件 (test suite) 偵測到錯誤的突變時能夠失敗。"
+"他不管是因為哪個特定的測試失敗，因為大部分的工具也無法指出失敗的原因是因為"
+"突變還是什麼其他原因。這代表他也不管是不是有多個失敗的測試，你可以把"
+"這樣的特性當作是一個特點來使用。"
+
+#: ../../README.rst:148
+msgid ""
+"Whenever your test tools and framework support the **fail fast** option "
+"make use of it to reduce test execution time even more!"
+msgstr "當你的測試工具或是框架支援 **fail fast** 選項的時候"
+"記得使用該選項來減少測試執行時間！"
+
+#: ../../README.rst:152
+msgid "Refactor comparison to empty string"
+msgstr "重構對於空字串的比較"
+
+#: ../../README.rst:154
+msgid ""
+"Comparison operators may be mutated with each other which gives, "
+"depending on the langauge, about 10 possible mutations."
+msgstr "根據不同語言，比較運算子可能突變不同的數量。大約而言會有 10 種不同的突變。"
+
+#: ../../README.rst:157
+msgid ""
+"Every time ``S`` is not an empty string the following 3 variants are "
+"evaluated to ``True``:"
+msgstr "當 ``S`` 不是個空字串的時候，下面 3 個變體會被當作是 ``True``："
+
+#: ../../README.rst:160
+msgid "``if S != \"\"``"
+msgstr ""
+
+#: ../../README.rst:161
+msgid "``if S > \"\"``"
+msgstr ""
+
+#: ../../README.rst:162
+msgid "``if S not in \"\"``"
+msgstr ""
+
+#: ../../README.rst:164
+msgid ""
+"The existing test cases pass and these mutations are never killed. In "
+"languages like Python, non-empty sequences are evaluated to `True` in "
+"boolean context and you don't need to use comparisons. This reduces the "
+"number of possible mutations."
+msgstr "因此存在的測試案例會通過，而突變永遠沒有被殺掉。如 Python 這樣的語言，"
+"非空字串都會在布林運算中被視為 `True`，因此不需要去比較他。這降低了"
+"可能突變的數量。"
+
+#: ../../README.rst:169
+msgid "For Python you may use the *emptystring* extension of pylint"
+msgstr "Python 中可以使用 pylint 的 *emptystring* 套件："
+
+#: ../../README.rst:175
+msgid ""
+"See `pylint #1183 <https://github.com/PyCQA/pylint/pull/1183>`_ for more "
+"info and :doc:`python/example_03/README` for an example."
+msgstr "更多資訊請參見 `pylint #1183 <https://github.com/PyCQA/pylint/pull/1183>`_ ，"
+"相關範例請參考：:doc:`python/example_03/README`"
+
+#: ../../README.rst:180
+msgid ""
+"In some cases empty string is an acceptable value and refactoring will "
+"change the behavior of the program! Be careful when doing this."
+msgstr "某些狀況下空字串是一個合法的值，而重構可能會造成行為改變。小心，小心再小心。"
+
+#: ../../README.rst:185
+msgid "Refactor comparison to zero"
+msgstr "重構與 0 比較的狀況"
+
+#: ../../README.rst:187
+msgid ""
+"This is similar to the previous section but for integer values. For "
+"Python use the *comparetozero* extension to detect possible offenses."
+msgstr "這與前一個章節有些相似，不過是比較整數數值。Python 可以透過 *comparetozero*"
+"找出可能的錯誤。"
+
+#: ../../README.rst:194
+msgid ""
+"See `pylint #1243 <https://github.com/PyCQA/pylint/pull/1243>`_ for more "
+"info."
+msgstr "更多訊息請參考 `pylint #1243 <https://github.com/PyCQA/pylint/pull/1243>`_ "
+
+#: ../../README.rst:198
+msgid "Python: Refactor len(X) comparisons to zero"
+msgstr "Python: 重構 len(X) 跟 0 比較"
+
+#: ../../README.rst:200
+msgid ""
+"Every time ``X`` is not an empty sequence the following variants are "
+"evaluated to ``True`` and result in surviving mutants:"
+msgstr "當 ``X`` 不是空的序列時，下面的表達式相當於與 ``True`` 比較，"
+"而其結果將會在突變中存活下來。"
+
+#: ../../README.rst:203
+msgid "``if len(X) != 0``"
+msgstr ""
+
+#: ../../README.rst:204
+msgid "``if len(X) > 0``"
+msgstr ""
+
+#: ../../README.rst:206
+msgid ""
+"Additionally if we don't have a test to validate the ``if`` body, for "
+"example that it raises an exception, then the following mutation will "
+"also survive:"
+msgstr "此外，如果我們不對 ``if`` 的主體做驗證，例如說他會發起 exception，"
+"則下列的突變也會存活下來："
+
+#: ../../README.rst:210
+msgid "``if len(X) < 0``"
+msgstr ""
+
+#: ../../README.rst:212
+msgid "Refactoring this to ::"
+msgstr "我們可以重構成："
+
+#: ../../README.rst:218
+msgid ""
+"is the best way to go about it. This also reduces the total number of "
+"possible mutations. A more complicated example, using two lists and "
+"boolean operation can be seen below."
+msgstr "是最好的方式。這同時可以降低突變的總數量。可以參考下面使用兩個 lists"
+"以及布林運算的更為複雜的範例。"
+
+#: ../../README.rst:229
+msgid "Consider the following example"
+msgstr "以下面的程式碼為例："
+
+#: ../../README.rst:240
+msgid ""
+"Similar to previous examples the ``len() > 0`` expression can be "
+"refactored. Since joining an empty list will produce an empty string the "
+"``else`` block is not necessary. The example can be re-written as"
+msgstr "與前面的範例相近，我們可以將 ``len() > 0`` 重構。對一個空的 list"
+"joining 會產生出一個空字串，因此 ``else`` block 是不必要的。因此範例可以"
+"改寫為："
+
+#: ../../README.rst:251
+msgid ""
+"In pylint 2.0 there is a new checker called *len-as-condition* which will"
+" warn you about code snippets that compare the result of a `len()` call "
+"to zero. For more information see `pylint #1154 "
+"<https://github.com/PyCQA/pylint/pull/1154>`_."
+msgstr "pylint 2.0 中有個新的檢查叫作 *len-as-condition*，他會在你的程式中"
+"有對 `len()` 的結果與 0 進行比較時提出警告。更多資訊請參考 `pylint #1154 "
+"<https://github.com/PyCQA/pylint/pull/1154>`_ "
+
+#: ../../README.rst:256
+msgid "For practical example see :doc:`python/example_05/README`."
+msgstr "範例請參考：:doc:`python/example_05/README`"
+
+#: ../../README.rst:260
+msgid "Python: Refactor if len(list) == 1"
+msgstr "Python: 重構 if len(list) == 1"
+
+#: ../../README.rst:262
+msgid "The following code"
+msgstr "以下的程式碼"
+
+#: ../../README.rst:272
+msgid "can be refactored into this"
+msgstr "可以重構為："
+
+#: ../../README.rst:283
+msgid ""
+"This refactoring may have side effects when the list length is greater "
+"than 1, e.g. 2. Depending on your program this may ot may-not be the "
+"case."
+msgstr "當 list 長度大於 1 的時候 (例如：2)，這個重構可能會有副作用的產生。"
+"這取決於你的程式，這可能，也可能不是其中的一個測試案例。"
+
+#: ../../README.rst:288
+msgid "Testing for X != 1"
+msgstr "測試 X != 1"
+
+#: ../../README.rst:290
+msgid "When testing the not equals condition we need at least 3 test cases:"
+msgstr "當我們測試不等於的條件時，我們需要至少3個測試案例："
+
+#: ../../README.rst:292
+msgid "Test with value smaller than the condition"
+msgstr "測試小於條件的數值"
+
+#: ../../README.rst:293
+msgid "Test with value that equals the condition"
+msgstr "測試等於條件的數值"
+
+#: ../../README.rst:294
+msgid "Test with value greater than the condition"
+msgstr "測試大於條件的數值"
+
+#: ../../README.rst:296
+msgid ""
+"Most often we do test with value that equals the condition (the golden "
+"scenario) and either one of the other bordering values but not both. This"
+" leads to mutations which are not killed."
+msgstr "通常我們都會測試相等的條件 (最好狀況) 然後測試大於或小於的其中一個狀況。"
+"這讓突變可能不會被殺死。"
+
+#: ../../README.rst:300
+msgid "Example :doc:`python/example_04/README`."
+msgstr "範例請參考：:doc:`python/example_04/README`"
+
+#: ../../README.rst:304
+msgid "Python: Refactor if X is None"
+msgstr "Python: 重構 if X is None"
+
+#: ../../README.rst:306
+msgid ""
+"When X has a value of None the following mutations are equivalent are "
+"will survive:"
+msgstr "當 X 有 None 的值的時候，下面的突變是相等的且會存活下來："
+
+#: ../../README.rst:309
+msgid "``if X is None:``"
+msgstr ""
+
+#: ../../README.rst:310
+msgid "``if X == None:``"
+msgstr ""
+
+#: ../../README.rst:312
+msgid ""
+"in addition static analyzers may report comparison to None as an offence."
+" To handle this refactor ``if X is None:`` to ``if not X:`` when "
+"possible."
+msgstr "此外，靜態分析可能會將這種比較視為一種錯誤。在可行的情況下應該要將"
+"``if X is None`` 重構為 ``if not X``。"
+
+#: ../../README.rst:317
+msgid "For example see :doc:`python/example_06/README`."
+msgstr "請參考範例： :doc:`python/example_06/README`."
+
+#: ../../README.rst:321
+msgid "Python: Refactor if X is not None"
+msgstr "Python: 重構 if X is not None"
+
+#: ../../README.rst:323
+msgid ""
+"This is the opposite of the previous section. Refactor ``if X is not "
+"None:`` to ``if X:``. For example see :doc:`python/example_11/README`."
+msgstr "這是前一節的相反情況。將 ``if X is not None:`` 重構為 ``if X:``。"
+"請參考範例：:doc:`python/example_11/README`"
+
+#: ../../README.rst:330
+msgid "Python: Testing __eq__ and __ne__"
+msgstr "Python: 測試 __eq__ 以及 __ne__"
+
+#: ../../README.rst:332
+msgid ""
+"When objects are compared by comparing their attributes then full "
+"mutation test coverage can be achieved by comparing the object to itself,"
+" comparing to None, comparing two objects with the same attribute values "
+"and then test by changing the attributes one by one."
+msgstr "當物件使用自己的比較運算方法比較時，完整的突變測試可以透過比較物件本身、"
+"與 None 比較、與兩個相同 attribute 數值的物件比較以及一個一個改變 attribute 來測試。"
+
+#: ../../README.rst:337
+msgid "For example see :doc:`python/example_07/README`."
+msgstr "請參考範例：:doc:`python/example_07/README`"
+
+#: ../../README.rst:339
+msgid "Consider if there is the following mistake in the example:"
+msgstr "以下面的程式碼的錯誤為例："
+
+#: ../../README.rst:349
+msgid ""
+"Notice the redundant `self.device and` in the expression above! When "
+"`self.device` contains a value (string in this case) the expression is "
+"equivalent to `self.device == other.device`. On the other hand when "
+"`self.device` is `None` or an empty string the expression will always "
+"return `False`!"
+msgstr "注意到表達式前面冗餘的 `self.devie and`！當 `self.device` 內有值"
+"的時候 (這邊是字串)，表達式與 `self.device == other.device` 相等。"
+"當 `self.device` 是 `None` 或是空字串的時候，表達式永遠會回傳 `False`！"
+
+#: ../../README.rst:354
+msgid ""
+"If we have all of the above tests (which mutation testing has identified)"
+" then our test suite will fail and properly detect the defect ::"
+msgstr "如果我們有前面所以的測試的話 (那些突變測試已經確定的) 則我們的測試套件"
+"會失敗並且正確的被偵測到："
+
+#: ../../README.rst:374
+msgid ""
+"At the time of writing *Cosmic Ray* did not fail if there was a failure "
+"during the baseline test execution and all mutations would be reported as"
+" killed because, well the test suite failed! This was reported in `CR#111"
+" <https://github.com/sixty-north/cosmic-ray/issues/111>`_ and fixed in "
+"`CR#181 <https://github.com/sixty-north/cosmic-ray/pull/181>`_."
+msgstr "在撰寫 *Cosmic Ray* 時，如果在 baseline 測試執行時出現錯誤，"
+"並不會顯示失敗，而會將所有的突變回報為 `殺死`，這是因為測試套件就失敗了！"
+"回報在 `CR#111 <https://github.com/sixty-north/cosmic-ray/issues/111>`_ ，"
+"修復在 `CR#181 <https://github.com/sixty-north/cosmic-ray/pull/181>`_ "
+
+#: ../../README.rst:382
+msgid "Python: Testing sequence of if == int"
+msgstr "Python: 測試一系列的 if == int"
+
+#: ../../README.rst:384
+msgid "To completely test the following pattern"
+msgstr "要完整的測試下面的 pattern"
+
+#: ../../README.rst:395
+msgid ""
+"you need to test with all descrete values plus values outside the allowed"
+" set. For example see :doc:`python/example_08/README`"
+msgstr "你需要測試所有的合法數值加上集合外的值。"
+"範例請參考：:doc:`python/example_08/README`"
+
+#: ../../README.rst:400
+msgid "Python: Testing sequence of if == string"
+msgstr "Python: 測試一系列的 if == string"
+
+#: ../../README.rst:402
+msgid "To fully test the following pattern"
+msgstr "要完整的測試下面的 pattern"
+
+#: ../../README.rst:413
+msgid ""
+"you need to test with all possible string values as well as with values "
+"outside the allowed set. For example see "
+":doc:`python/example_08/README_str`."
+msgstr "你需要測試所有可能的字串數值，以及那些不在可能字串內的值。"
+"範例請參考：:doc:`python/example_08/README_str`"
+
+#: ../../README.rst:418
+msgid "Python: Missing or extra parameters"
+msgstr "Python: 缺失或額外參數"
+
+#: ../../README.rst:420
+msgid ""
+"Depending on how your method signature is defined it is possible to "
+"either accept additional parameters which are not needed or forget to "
+"pass along parameters which control internal behavior. Mutation testing "
+"helps you identify those cases and adjust your code accordingly."
+msgstr "根據你的方法 (method) 定義不同，其用來控制內部行為的參數可以不是必要或是忘記傳入。"
+"突變測試可以幫助你檢查這些狀況並且根據對應的情況調整程式碼。"
+
+#: ../../README.rst:425
+msgid "For example see :doc:`python/example_09/README`."
+msgstr "範例請參考：:doc:`python/example_09/README`"
+
+#: ../../README.rst:429
+msgid "Python: Testing for 0 <= X < 100"
+msgstr "Python: 測試 0 <= X <= 100"
+
+#: ../../README.rst:432
+msgid "When testing numerical ranges we need at least 4 tests:"
+msgstr "當要對數值範圍做測試時我們需要至少 4 個測試："
+
+#: ../../README.rst:434
+msgid "Test with both border values"
+msgstr "測試兩個邊界數值"
+
+#: ../../README.rst:435
+msgid "Test with values outside the range, ideally +1/-1"
+msgstr "測試邊界外的數值，理想上使用 +1 / -1"
+
+#: ../../README.rst:436
+msgid ""
+"Testing with a value in the middle of the range is not required for full "
+"mutation coverage!"
+msgstr "測試範圍中的數值並不是完整突變測試需要涵蓋的範圍！"
+
+#: ../../README.rst:439
+msgid "For example see :doc:`python/example_12/README`."
+msgstr "範例請參考：:doc:`python/example_12/README`"
+
+#: ../../README.rst:443
+msgid "Python: On boolean expressions"
+msgstr "Python: 布林表達式"
+
+#: ../../README.rst:445
+msgid ""
+"When dealing with non-trivial boolean expressions mutation testing often "
+"helps put things into perspective. It causes you to rethink the "
+"expression which often leads to refactoring and killing mutants. For "
+"example see :doc:`python/example_10/README`."
+msgstr "當在處理重要的布林表達式時，突變測試通常可以幫你透撤整個狀況。"
+"他讓你需要重新思考整個表達式，通常這會讓你重構程式碼以及殺死突變。"
+"範例請參襖：:doc:`python/example_10/README`"
+
+#: ../../README.rst:452
+msgid "Refactor multiple boolean expressions"
+msgstr "重構多重布林表達式"
+
+#: ../../README.rst:454
+msgid ""
+"Consider the following code where the expression left of ``and`` is "
+"always the same"
+msgstr "以下方的程式碼為例，表達式 ``and`` 左邊都是相同的"
+
+#: ../../README.rst:471
+msgid ""
+"This can easily be refactored by removing the ``name == \"method\"`` "
+"expression and making the subsequent if statements nested under the first"
+" one."
+msgstr "我們可以簡單的將表達式中 ``name == \"method\"`` 部份移除，移到上層，"
+"並將隨後的 if 語句置放於其下："
+
+#: ../../README.rst:489
+msgid ""
+"The refactored code is shorter and provides less mutation sites thus "
+"reducing overall mutation test execution time. This code can be "
+"refactored even more aggressively into"
+msgstr "這樣重構可以讓減少程式碼行數，並且降低突變的次數來減少總體突變測試的時間。"
+"這段程式碼可以再以下面的方式進行更基進的重構："
+
+#: ../../README.rst:504
+msgid "Indices and tables"
+msgstr "目錄及索引"
+
+#: ../../README.rst:506
+msgid ":ref:`genindex`"
+msgstr ":ref:`genindex`"
+
+#: ../../README.rst:507
+msgid ":ref:`modindex`"
+msgstr ":ref:`modindex`"
+
+#: ../../README.rst:508
+msgid ":ref:`search`"
+msgstr ":ref:`search`"
+
