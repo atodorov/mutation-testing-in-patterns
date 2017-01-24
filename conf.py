@@ -54,7 +54,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Mutation Testing in Patterns'
-copyright = '2016, Alexander Todorov'
+copyright = 'CC-BY-SA 2016-2017, Alexander Todorov & contributors'
 author = 'Alexander Todorov'
 
 # The version info for the project you're documenting, acts as replacement for
