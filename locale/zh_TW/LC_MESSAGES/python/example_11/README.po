@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_11/README.rst:2
+msgid "Refactor if X is not None"
+msgstr "重構 if X is not None"
+
+#: ../../python/example_11/README.rst:4
+msgid ""
+"Objects of any type can be compared for not being ``None`` value however "
+"that leads to surviving mutations. ``None`` is a special value but in "
+"most practical cases it is equivalent to zero/empty value for the type."
+msgstr "任何型態的物件都可以跟 ``None`` 來比較，不過這會讓突變存活下來。"
+"``None`` 是一個特別的值，不過對於大部份常見的案例中這都等價於 0 或空值。"
+
+#: ../../python/example_11/README.rst:10
+msgid "Example"
+msgstr "範例："
+
+#: ../../python/example_11/README.rst:17
+msgid ""
+"In ``example1.py`` we're accepting ``None`` as default parameter value "
+"and correctly identified 3 test cases - when password is a string, when "
+"it is empty string and when it is ``None``. There is one surviving "
+"mutant. ::"
+msgstr "在 ``example1.py`` 我們使用 ``None`` 當作 password 的預設參數並且正確的"
+"偵測出 3 個測試案例 - 當 password 是字串時，當參數傳入空字串而我們使用 ``None`` 比較時，"
+"會有一個突變存活下來。"
+
+#: ../../python/example_11/README.rst:44
+msgid ""
+"If we decide to remove ``None`` and accept an empty string instead then "
+"``example2.py`` is reduced to one line and there are no surviving "
+"mutations. Also the number of mutations is significantly reduced. ::"
+msgstr "如果我們移除 ``None`` 而使用空字串作為預設值，在 ``example2.py`` 中可以"
+"減少一行程式碼並且讓突變都被殺死。同時突變數量也有顯著的減少。"
+
+#: ../../python/example_11/README.rst:61
+msgid "Source code"
+msgstr "程式碼"

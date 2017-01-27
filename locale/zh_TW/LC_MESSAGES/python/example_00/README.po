@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_00/README.rst:2
+msgid "Mutant not killed due to module import issue"
+msgstr "因為 import 問題而無法殺死突變"
+
+#: ../../python/example_00/README.rst:4
+msgid ""
+"Example of how importing modules under different names allows mutations "
+"to survive. In this case the problem is related to how Cosmic-Ray loads "
+"the mutated modules. It has already been fixed in `PR #158 "
+"<https://github.com/sixty-north/cosmic-ray/pull/158>`_."
+msgstr "針對使用不同名稱載入模組會讓突變存活下來的範例。在這個案例中，問題"
+"跟 Cosmic-Ray 如何載入突變模組有關。這已經在 `PR #158 "
+"<https://github.com/sixty-north/cosmic-ray/pull/158>`_ 中修復。"
+
+#: ../../python/example_00/README.rst:10
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_00/README.rst:39
+msgid ""
+"In this example ``test_control.py`` properly kills the mutant once the "
+"above issue is fixed."
+msgstr "在這個範例中 ``test_control.py`` 在修復後便能正確殺死突變。"
+
+#: ../../python/example_00/README.rst:43
+msgid "Source code"
+msgstr "程式碼"
+

@@ -1,0 +1,54 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_01/README.rst:2
+msgid "Mutant not killed when dynamically importing module"
+msgstr "突變在動態載入模組時沒有被殺死"
+
+#: ../../python/example_01/README.rst:4
+msgid ""
+"Example of how dynamically importing modules allows mutations to survive."
+" In this case the problem is a bug in Cosmic-Ray which still hasn't been "
+"diagnosed properly. For more information see `Issue #157 "
+"<https://github.com/sixty-north/cosmic-ray/issues/157>`_."
+msgstr "這個範例演示動態載入模組導致突變存活。"
+"這個案例是 Cosmic-Ray 中尚未診斷完成的問題。更多資訊請參考"
+" `Issue #157 <https://github.com/sixty-north/cosmic-ray/issues/157>`_ "
+
+#: ../../python/example_01/README.rst:10
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_01/README.rst:38
+msgid "Verify test works"
+msgstr "驗證測試是成功的"
+
+#: ../../python/example_01/README.rst:40
+msgid ""
+"In this example ``test_control.py`` properly detects the mutant when the "
+"source code is modified by hand and the test executed manually. To verify"
+" this edit ``sandwich/ham/ham.py`` as shown above and then execute ::"
+msgstr "這個範例中 ``test_control.py`` 正確的在程式碼手動修改以及執行時，"
+"偵測到突變。要驗證這個部份，請以下面的程式碼手動編輯 ``sandwitch/ham/ham.py`` 接著執行一次："
+
+#: ../../python/example_01/README.rst:61
+msgid "Source code"
+msgstr "程式碼"
+

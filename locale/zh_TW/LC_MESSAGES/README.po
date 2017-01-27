@@ -1,0 +1,600 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../README.rst:2
+msgid "Mutation Testing in Patterns"
+msgstr "突變測試的測試模式"
+
+#: ../../README.rst:8
+msgid ""
+"Mutation testing is a technique used to evaluate the quality of existing "
+"software tests. Mutation testing involves modifying a program in small "
+"ways, for example replacing ``True`` constants with ``False`` and re-"
+"running its test suite. When the test suite fails the *mutant* is "
+"*killed*. This tells us how good the test suite is. The goal of this "
+"paper is to describe different software and testing patterns related "
+"using practical examples."
+msgstr ""
+"突變測試是一個用來衡量現有軟體測試質量的一種技巧。突變測試牽涉到小量變更程式，"
+"例如將 ``True`` 置換為 ``False`` 然後重新運行測試程式。當測試程式失敗則代表"
+"*突變* 被 *殺死*。這能夠告訴我們測試程式的質量為何。這個指南的目標是使用實際的案例"
+"來描述不同的軟體以及測試模式。"
+
+#: ../../README.rst:15
+msgid ""
+"Some of them are language specific so please see the relevant sections "
+"for information about installing and running the necessary tools and "
+"examples."
+msgstr ""
+
+#: ../../README.rst:22
+msgid "Mutation testing tools"
+msgstr ""
+
+#: ../../README.rst:24
+msgid ""
+"This is a list of mutation testing tools which are under active use and "
+"maintenance from the community:"
+msgstr ""
+
+#: ../../README.rst:27
+msgid "Python - `Cosmic Ray <https://github.com/sixty-north/cosmic-ray>`_"
+msgstr ""
+
+#: ../../README.rst:28
+msgid "Ruby - `Mutant <https://github.com/mbj/mutant>`_"
+msgstr ""
+
+#: ../../README.rst:29
+msgid "Java - `Pitest <https://github.com/hcoles/pitest>`_"
+msgstr ""
+
+#: ../../README.rst:30
+msgid "JavaScript - `Stryker <https://github.com/stryker-mutator/stryker>`_"
+msgstr ""
+
+#: ../../README.rst:31
+msgid "PHP - `Humbug <https://github.com/padraic/humbug>`_"
+msgstr ""
+
+#: ../../README.rst:33
+msgid ""
+"For LLVM-based languages such as C, C++, Rust and Objective-C checkout "
+"[mull](https://github.com/mull-project/mull), which looks like a nice "
+"project but may not be ready for production use!"
+msgstr ""
+
+#: ../../README.rst:39
+msgid "Make sure your tools work"
+msgstr ""
+
+#: ../../README.rst:41
+msgid ""
+"Mutation testing relies on dynamically modifying program modules and "
+"loading the mutated instance from memory. Depending on the language "
+"specifics there may be several ways to refer to the same module. In "
+"Python the following are equivalent"
+msgstr ""
+
+#: ../../README.rst:56
+msgid "The equivalency here is in terms of having access to the same module API."
+msgstr ""
+
+#: ../../README.rst:58
+msgid ""
+"When we mutation test the right-most ``ham`` module our tools may not be "
+"able to resolve to the same module if various importing styles are used. "
+"For example see :doc:`python/example_00/README`."
+msgstr ""
+
+#: ../../README.rst:62
+msgid ""
+"Another possible issue is with programs that load modules dynamically or "
+"change the module search path at runtime. Depending on how the mutation "
+"testing tool works these operations may interfere with it. For example "
+"see :doc:`python/example_01/README`."
+msgstr ""
+
+#: ../../README.rst:69
+msgid "Make sure your tests work"
+msgstr ""
+
+#: ../../README.rst:71
+msgid ""
+"Mutation testing relies on the fact that your test suite will fail when a"
+" mutation is introduced. In turn any kind of failure will kill the "
+"mutant! The mutation test tool has no way of knowing whether your test "
+"suite failed because the mutant tripped one of the assertions or whether "
+"it failed due to other reasons."
+msgstr ""
+
+#: ../../README.rst:78
+msgid ""
+"Make sure your test suite is robust and doesn't randomly fail due to "
+"external factors! For example see :doc:`python/example_02/README`."
+msgstr ""
+
+#: ../../README.rst:85
+msgid "Divide and conquer"
+msgstr ""
+
+#: ../../README.rst:87
+msgid "The basic mutation test algorithm is this"
+msgstr ""
+
+#: ../../README.rst:96
+msgid "**mutation-operators** are the things that make small changes to your code"
+msgstr ""
+
+#: ../../README.rst:97
+msgid ""
+"**operator.sites** are the places in your code where operators can be "
+"applied"
+msgstr ""
+
+#: ../../README.rst:101
+msgid ""
+"As you can see mutation testing is a very expensive operation. For "
+"example the `pykickstart <http://github.com/rhinstaller/pykickstart>`_ "
+"project started with 5523 possible mutations and 347 tests, which took on"
+" average 100 seconds to execute. A full mutation testing execution needs "
+"more than 6 days to complete!"
+msgstr ""
+
+#: ../../README.rst:107
+msgid ""
+"In practice however not all tests are related to, or even make use of all"
+" program modules. This means that mutated operators are only tested via "
+"subset of the entire test suite. This fact can be used to reduce "
+"execution time by scheduling mutation tests against each individual "
+"file/module using only the tests which are related to it. The best case "
+"scenario is when your source file names map directly to test file names."
+msgstr ""
+
+#: ../../README.rst:115
+msgid "For example something like this"
+msgstr ""
+
+#: ../../README.rst:124
+msgid ""
+"Where **runTests** executes the mutation testing tool against a single "
+"file and executes only the test which is related to this file. For "
+"*pykickstart* this approach reduced  the entire execution time to little "
+"over 6 hours!"
+msgstr ""
+
+#: ../../README.rst:131
+msgid ""
+"Other tools and languages may have a convention of how tests are "
+"organized or which tests are executed by the mutation testing tool. For "
+"example in Ruby the convention is to have all tests under "
+"`spec/*_spec.rb` which maps with the idea proposed above. Mutant, the "
+"Ruby mutation testing tool, uses this convention to find the tests it "
+"needs. For Python, on the other hand, the user needs to manually specify "
+"which tests should be executed!"
+msgstr ""
+
+#: ../../README.rst:140
+msgid "Fail fast"
+msgstr ""
+
+#: ../../README.rst:142
+msgid ""
+"Mutation testing relies on your test suite failing when it detects a "
+"faulty mutation. It doesn't matter which particular test has failed "
+"because most of the tools have no way of telling whether or not the "
+"failed test is related to the mutated code. That means it also doesn't "
+"matter if there are more than one failing tests so you can use this to "
+"your advantage."
+msgstr ""
+
+#: ../../README.rst:148
+msgid ""
+"Whenever your test tools and framework support the **fail fast** option "
+"make use of it to reduce test execution time even more!"
+msgstr ""
+
+#: ../../README.rst:152
+msgid "Refactor comparison to empty string"
+msgstr ""
+
+#: ../../README.rst:154
+msgid ""
+"Comparison operators may be mutated with each other which gives, "
+"depending on the langauge, about 10 possible mutations."
+msgstr ""
+
+#: ../../README.rst:157
+msgid ""
+"Every time ``S`` is not an empty string the following 3 variants are "
+"evaluated to ``True``:"
+msgstr ""
+
+#: ../../README.rst:160
+msgid "``if S != \"\"``"
+msgstr ""
+
+#: ../../README.rst:161
+msgid "``if S > \"\"``"
+msgstr ""
+
+#: ../../README.rst:162
+msgid "``if S not in \"\"``"
+msgstr ""
+
+#: ../../README.rst:164
+msgid ""
+"The existing test cases pass and these mutations are never killed. In "
+"languages like Python, non-empty sequences are evaluated to `True` in "
+"boolean context and you don't need to use comparisons. This reduces the "
+"number of possible mutations."
+msgstr ""
+
+#: ../../README.rst:169
+msgid "For Python you may use the *emptystring* extension of pylint"
+msgstr ""
+
+#: ../../README.rst:175
+msgid ""
+"See `pylint #1183 <https://github.com/PyCQA/pylint/pull/1183>`_ for more "
+"info and :doc:`python/example_03/README` for an example."
+msgstr ""
+
+#: ../../README.rst:180
+msgid ""
+"In some cases empty string is an acceptable value and refactoring will "
+"change the behavior of the program! Be careful when doing this."
+msgstr ""
+
+#: ../../README.rst:185
+msgid "Refactor comparison to zero"
+msgstr ""
+
+#: ../../README.rst:187
+msgid ""
+"This is similar to the previous section but for integer values. For "
+"Python use the *comparetozero* extension to detect possible offenses."
+msgstr ""
+
+#: ../../README.rst:194
+msgid ""
+"See `pylint #1243 <https://github.com/PyCQA/pylint/pull/1243>`_ for more "
+"info."
+msgstr ""
+
+#: ../../README.rst:198
+msgid "Python: Refactor len(X) comparisons to zero"
+msgstr ""
+
+#: ../../README.rst:200
+msgid ""
+"Every time ``X`` is not an empty sequence the following variants are "
+"evaluated to ``True`` and result in surviving mutants:"
+msgstr ""
+
+#: ../../README.rst:203
+msgid "``if len(X) != 0``"
+msgstr ""
+
+#: ../../README.rst:204
+msgid "``if len(X) > 0``"
+msgstr ""
+
+#: ../../README.rst:206
+msgid ""
+"Additionally if we don't have a test to validate the ``if`` body, for "
+"example that it raises an exception, then the following mutation will "
+"also survive:"
+msgstr ""
+
+#: ../../README.rst:210
+msgid "``if len(X) < 0``"
+msgstr ""
+
+#: ../../README.rst:212
+msgid "Refactoring this to ::"
+msgstr ""
+
+#: ../../README.rst:218
+msgid ""
+"is the best way to go about it. This also reduces the total number of "
+"possible mutations. A more complicated example, using two lists and "
+"boolean operation can be seen below."
+msgstr ""
+
+#: ../../README.rst:229
+msgid "Consider the following example"
+msgstr ""
+
+#: ../../README.rst:240
+msgid ""
+"Similar to previous examples the ``len() > 0`` expression can be "
+"refactored. Since joining an empty list will produce an empty string the "
+"``else`` block is not necessary. The example can be re-written as"
+msgstr ""
+
+#: ../../README.rst:251
+msgid ""
+"In pylint 2.0 there is a new checker called *len-as-condition* which will"
+" warn you about code snippets that compare the result of a `len()` call "
+"to zero. For more information see `pylint #1154 "
+"<https://github.com/PyCQA/pylint/pull/1154>`_."
+msgstr ""
+
+#: ../../README.rst:256
+msgid "For practical example see :doc:`python/example_05/README`."
+msgstr ""
+
+#: ../../README.rst:260
+msgid "Python: Refactor if len(list) == 1"
+msgstr ""
+
+#: ../../README.rst:262
+msgid "The following code"
+msgstr ""
+
+#: ../../README.rst:272
+msgid "can be refactored into this"
+msgstr ""
+
+#: ../../README.rst:283
+msgid ""
+"This refactoring may have side effects when the list length is greater "
+"than 1, e.g. 2. Depending on your program this may ot may-not be the "
+"case."
+msgstr ""
+
+#: ../../README.rst:288
+msgid "Testing for X != 1"
+msgstr ""
+
+#: ../../README.rst:290
+msgid "When testing the not equals condition we need at least 3 test cases:"
+msgstr ""
+
+#: ../../README.rst:292
+msgid "Test with value smaller than the condition"
+msgstr ""
+
+#: ../../README.rst:293
+msgid "Test with value that equals the condition"
+msgstr ""
+
+#: ../../README.rst:294
+msgid "Test with value greater than the condition"
+msgstr ""
+
+#: ../../README.rst:296
+msgid ""
+"Most often we do test with value that equals the condition (the golden "
+"scenario) and either one of the other bordering values but not both. This"
+" leads to mutations which are not killed."
+msgstr ""
+
+#: ../../README.rst:300
+msgid "Example :doc:`python/example_04/README`."
+msgstr ""
+
+#: ../../README.rst:304
+msgid "Python: Refactor if X is None"
+msgstr ""
+
+#: ../../README.rst:306
+msgid ""
+"When X has a value of None the following mutations are equivalent are "
+"will survive:"
+msgstr ""
+
+#: ../../README.rst:309
+msgid "``if X is None:``"
+msgstr ""
+
+#: ../../README.rst:310
+msgid "``if X == None:``"
+msgstr ""
+
+#: ../../README.rst:312
+msgid ""
+"in addition static analyzers may report comparison to None as an offence."
+" To handle this refactor ``if X is None:`` to ``if not X:`` when "
+"possible."
+msgstr ""
+
+#: ../../README.rst:317
+msgid "For example see :doc:`python/example_06/README`."
+msgstr ""
+
+#: ../../README.rst:321
+msgid "Python: Refactor if X is not None"
+msgstr ""
+
+#: ../../README.rst:323
+msgid ""
+"This is the opposite of the previous section. Refactor ``if X is not "
+"None:`` to ``if X:``. For example see :doc:`python/example_11/README`."
+msgstr ""
+
+#: ../../README.rst:330
+msgid "Python: Testing __eq__ and __ne__"
+msgstr ""
+
+#: ../../README.rst:332
+msgid ""
+"When objects are compared by comparing their attributes then full "
+"mutation test coverage can be achieved by comparing the object to itself,"
+" comparing to None, comparing two objects with the same attribute values "
+"and then test by changing the attributes one by one."
+msgstr ""
+
+#: ../../README.rst:337
+msgid "For example see :doc:`python/example_07/README`."
+msgstr ""
+
+#: ../../README.rst:339
+msgid "Consider if there is the following mistake in the example:"
+msgstr ""
+
+#: ../../README.rst:349
+msgid ""
+"Notice the redundant `self.device and` in the expression above! When "
+"`self.device` contains a value (string in this case) the expression is "
+"equivalent to `self.device == other.device`. On the other hand when "
+"`self.device` is `None` or an empty string the expression will always "
+"return `False`!"
+msgstr ""
+
+#: ../../README.rst:354
+msgid ""
+"If we have all of the above tests (which mutation testing has identified)"
+" then our test suite will fail and properly detect the defect ::"
+msgstr ""
+
+#: ../../README.rst:374
+msgid ""
+"At the time of writing *Cosmic Ray* did not fail if there was a failure "
+"during the baseline test execution and all mutations would be reported as"
+" killed because, well the test suite failed! This was reported in `CR#111"
+" <https://github.com/sixty-north/cosmic-ray/issues/111>`_ and fixed in "
+"`CR#181 <https://github.com/sixty-north/cosmic-ray/pull/181>`_."
+msgstr ""
+
+#: ../../README.rst:382
+msgid "Python: Testing sequence of if == int"
+msgstr ""
+
+#: ../../README.rst:384
+msgid "To completely test the following pattern"
+msgstr ""
+
+#: ../../README.rst:395
+msgid ""
+"you need to test with all descrete values plus values outside the allowed"
+" set. For example see :doc:`python/example_08/README`"
+msgstr ""
+
+#: ../../README.rst:400
+msgid "Python: Testing sequence of if == string"
+msgstr ""
+
+#: ../../README.rst:402
+msgid "To fully test the following pattern"
+msgstr ""
+
+#: ../../README.rst:413
+msgid ""
+"you need to test with all possible string values as well as with values "
+"outside the allowed set. For example see "
+":doc:`python/example_08/README_str`."
+msgstr ""
+
+#: ../../README.rst:418
+msgid "Python: Missing or extra parameters"
+msgstr ""
+
+#: ../../README.rst:420
+msgid ""
+"Depending on how your method signature is defined it is possible to "
+"either accept additional parameters which are not needed or forget to "
+"pass along parameters which control internal behavior. Mutation testing "
+"helps you identify those cases and adjust your code accordingly."
+msgstr ""
+
+#: ../../README.rst:425
+msgid "For example see :doc:`python/example_09/README`."
+msgstr ""
+
+#: ../../README.rst:429
+msgid "Python: Testing for 0 <= X < 100"
+msgstr ""
+
+#: ../../README.rst:432
+msgid "When testing numerical ranges we need at least 4 tests:"
+msgstr ""
+
+#: ../../README.rst:434
+msgid "Test with both border values"
+msgstr ""
+
+#: ../../README.rst:435
+msgid "Test with values outside the range, ideally +1/-1"
+msgstr ""
+
+#: ../../README.rst:436
+msgid ""
+"Testing with a value in the middle of the range is not required for full "
+"mutation coverage!"
+msgstr ""
+
+#: ../../README.rst:439
+msgid "For example see :doc:`python/example_12/README`."
+msgstr ""
+
+#: ../../README.rst:443
+msgid "Python: On boolean expressions"
+msgstr ""
+
+#: ../../README.rst:445
+msgid ""
+"When dealing with non-trivial boolean expressions mutation testing often "
+"helps put things into perspective. It causes you to rethink the "
+"expression which often leads to refactoring and killing mutants. For "
+"example see :doc:`python/example_10/README`."
+msgstr ""
+
+#: ../../README.rst:452
+msgid "Refactor multiple boolean expressions"
+msgstr ""
+
+#: ../../README.rst:454
+msgid ""
+"Consider the following code where the expression left of ``and`` is "
+"always the same"
+msgstr ""
+
+#: ../../README.rst:471
+msgid ""
+"This can easily be refactored by removing the ``name == \"method\"`` "
+"expression and making the subsequent if statements nested under the first"
+" one."
+msgstr ""
+
+#: ../../README.rst:489
+msgid ""
+"The refactored code is shorter and provides less mutation sites thus "
+"reducing overall mutation test execution time. This code can be "
+"refactored even more aggressively into"
+msgstr ""
+
+#: ../../README.rst:504
+msgid "Indices and tables"
+msgstr ""
+
+#: ../../README.rst:506
+msgid ":ref:`genindex`"
+msgstr ""
+
+#: ../../README.rst:507
+msgid ":ref:`modindex`"
+msgstr ""
+
+#: ../../README.rst:508
+msgid ":ref:`search`"
+msgstr ""
+

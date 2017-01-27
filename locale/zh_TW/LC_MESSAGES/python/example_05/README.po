@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_05/README.rst:2
+msgid "Refactor if len(list) != 0"
+msgstr "重構 if len(list) != 0"
+
+#: ../../python/example_05/README.rst:5
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_05/README.rst:35
+msgid ""
+"If we didn't have the ``test_sayHello_with_friends()`` test then the ``!="
+" -> <`` mutation would have survived as well!"
+msgstr "如果我們沒有 ``test_sayHello_with_friends()`` 測試，則 ``!="
+" -> <`` 的突變將會存活下來。"
+
+#: ../../python/example_05/README.rst:38
+msgid "Now compare the results after refactoring ::"
+msgstr "現在比較重構後的輸出結果"
+
+#: ../../python/example_05/README.rst:45
+msgid ""
+"Functionality is the same but we have reduced the number of possible "
+"mutations!"
+msgstr "行為上完全相等，但是我們降低了可能的突變數量。"
+
+#: ../../python/example_05/README.rst:48
+msgid "Source code"
+msgstr "程式碼"
+

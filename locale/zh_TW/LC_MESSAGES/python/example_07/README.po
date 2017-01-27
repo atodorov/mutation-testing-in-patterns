@@ -1,0 +1,61 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_07/README.rst:2
+msgid "Testing __eq__ & __ne__"
+msgstr "測試 __eq__ 與 __ne__"
+
+#: ../../python/example_07/README.rst:4
+msgid ""
+"This is an example of testing overriden ``__eq__`` and ``__ne__`` "
+"methods. In this example objects are identified by the value of their "
+"attributes. There is an example where attributes are of the same type and"
+" an example where attributes are of different types."
+msgstr ""
+
+#: ../../python/example_07/README.rst:9
+msgid ""
+"To kill all mutants we have to exercise all possible methods and "
+"comparison branches in them, see source comments for more info."
+msgstr ""
+
+#: ../../python/example_07/README.rst:12
+msgid ""
+"Once we've stablished what is equal and how that compares to ``None`` and"
+" itself we can start testing comparisons by modifying the attribute "
+"values one by one. Note that equality comparison works both ways, that is"
+" ``X == Y`` is the same as ``Y == X`` so we test it that way."
+msgstr ""
+
+#: ../../python/example_07/README.rst:17
+msgid ""
+"Comment out the ``test_default_objects_are_always_equal()`` method and "
+"one of the ``assertNotEqual(sandwich_1, sandwich_2)`` lines and re-test "
+"to see the difference in results!"
+msgstr ""
+
+#: ../../python/example_07/README.rst:22
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_07/README.rst:34
+msgid "Source code"
+msgstr "程式碼"
+

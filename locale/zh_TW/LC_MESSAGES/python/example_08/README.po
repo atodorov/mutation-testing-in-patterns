@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2016, Alexander Todorov
+# This file is distributed under the same license as the Mutation Testing in
+# Patterns package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Mutation Testing in Patterns 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-01-23 22:51+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ../../python/example_08/README.rst:2
+msgid "Testing sequence of if == int statements"
+msgstr "測試有關 if == int 的序列"
+
+#: ../../python/example_08/README.rst:4
+msgid "Sometimes in programs we see the following pattern"
+msgstr "有時候在程式中會有這樣的模式"
+
+#: ../../python/example_08/README.rst:15
+msgid ""
+"``X`` is compared to several allowed values of type integer. It is "
+"important to notice that ``X`` accepts a descrete set of allowed values. "
+"When we forget to test with values outside the allowed set mutation "
+"testing will produce surviving mutants."
+msgstr "``X`` 與許多合法的整數去做比較。當我們忘記測試合法數值外的值的時候，"
+"突變測試會產生存活的突變。"
+
+#: ../../python/example_08/README.rst:22
+msgid "The order of if statements isn't important."
+msgstr "statements 的順序不是這麼的重要"
+
+#: ../../python/example_08/README.rst:26
+msgid "Reproducer"
+msgstr ""
+
+#: ../../python/example_08/README.rst:100
+msgid "Killing the mutants"
+msgstr "殺死突變"
+
+#: ../../python/example_08/README.rst:103
+msgid "To kill all mutants we need to test with values outside the allowed set ::"
+msgstr "要殺死所有的突變，我們需要測試合法範圍外的值："
+
+#: ../../python/example_08/README.rst:110
+msgid "Source code"
+msgstr "程式碼"
+
+
